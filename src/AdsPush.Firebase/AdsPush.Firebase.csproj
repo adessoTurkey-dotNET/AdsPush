@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj" />
+      <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj" />
+    </ItemGroup>
+
+</Project>
