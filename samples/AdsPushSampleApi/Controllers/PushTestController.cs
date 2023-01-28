@@ -1,5 +1,4 @@
 using AdsPush;
-using AdsPush.Abstraction;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdsPushSampleApi.Controllers;
