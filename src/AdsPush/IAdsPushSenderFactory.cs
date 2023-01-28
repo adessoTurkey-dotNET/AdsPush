@@ -1,4 +1,4 @@
-namespace AdsPush.Abstraction
+namespace AdsPush
 {
     public interface IAdsPushSenderFactory
     {

@@ -28,7 +28,7 @@ namespace AdsPush
 
 
         /// <inheritdoc />
-        public async Task SendAsync(
+        public async Task BasicSendAsync(
             AdsPushTarget target,
             string pushToken,
             AdsPushPayload payload,
@@ -90,6 +90,16 @@ namespace AdsPush
                 default:
                     throw new NotSupportedException($"Target {target} is not supported by Framework");
             }
+        }
+
+        public IApplePushNotificationSender GetApnsSender()
+        {
+            return _applePushNotificationSenderFactory.GetSender(this._appName);
+        }
+
+        public IFirebasePushNotificationSender GetFirebaseSender()
+        {
+            return this._firebasePushNotificationSenderFactory.GetSender(this._appName);
         }
     }
 }
