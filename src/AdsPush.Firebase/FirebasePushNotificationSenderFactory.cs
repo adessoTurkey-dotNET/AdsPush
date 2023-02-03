@@ -5,7 +5,7 @@ using AdsPush.Firebase.Settings;
 
 namespace AdsPush.Firebase
 {
-    internal class FirebasePushNotificationSenderFactory : IFirebasePushNotificationSenderFactory
+    public class FirebasePushNotificationSenderFactory : IFirebasePushNotificationSenderFactory
     {
         public FirebasePushNotificationSenderFactory(FirebaseAppSettingsSection firebaseAppSettingsSection)
         {

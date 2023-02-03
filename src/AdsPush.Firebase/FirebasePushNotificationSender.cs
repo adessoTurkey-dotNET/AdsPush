@@ -97,7 +97,7 @@ namespace AdsPush.Firebase
         public async Task SendAsync(
             AdsPushTarget target,
             string token,
-            AdsPushPayload payload,
+            AdsPushBasicSendPayload payload,
             CancellationToken cancellationToken = default)
         {
             try

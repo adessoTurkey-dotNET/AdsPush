@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace AdsPush.Abstraction
 {
-    public class AdsPushPayload
+    public class AdsPushBasicSendPayload
     {
-        public AdsPushPayload()
+        public AdsPushBasicSendPayload()
         {
             this.Parameters = new Dictionary<string, object>();
         }

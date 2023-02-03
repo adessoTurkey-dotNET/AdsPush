@@ -11,7 +11,7 @@ namespace AdsPush.Firebase.Extensions
     public static class MappingExtension
     {
         public static Message CreateFirebaseMessage(
-            this AdsPushPayload payload,
+            this AdsPushBasicSendPayload payload,
             AdsPushTarget target,
             string deviceToken)
         {

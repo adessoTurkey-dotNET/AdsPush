@@ -77,7 +77,7 @@ namespace AdsPush.APNS
 
        Task SendAsync(
            string deviceToken,
-           AdsPushPayload payload,
+           AdsPushBasicSendPayload payload,
            CancellationToken cancellationToken = default);
     }
 }

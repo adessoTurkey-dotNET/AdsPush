@@ -20,7 +20,7 @@ namespace AdsPush
         Task BasicSendAsync(
             AdsPushTarget target,
             string pushToken,
-            AdsPushPayload payload,
+            AdsPushBasicSendPayload payload,
             CancellationToken cancellationToken = default);
 
         IApplePushNotificationSender GetApnsSender();

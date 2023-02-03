@@ -45,7 +45,7 @@ namespace AdsPush.Firebase
         Task SendAsync(
             AdsPushTarget target,
             string token,
-            AdsPushPayload payload,
+            AdsPushBasicSendPayload payload,
             CancellationToken cancellationToken = default);
     }
 }

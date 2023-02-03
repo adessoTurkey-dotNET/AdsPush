@@ -8,7 +8,7 @@ namespace AdsPush.APNS.Extensions
     public static class MappingExtensions
     {
         public static APNSRequest CreateRequest(
-            this AdsPushPayload payload)
+            this AdsPushBasicSendPayload payload)
         {
             payload.Parameters ??= new Dictionary<string, object>();
           

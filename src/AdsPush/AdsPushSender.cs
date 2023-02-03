@@ -31,7 +31,7 @@ namespace AdsPush
         public async Task BasicSendAsync(
             AdsPushTarget target,
             string pushToken,
-            AdsPushPayload payload,
+            AdsPushBasicSendPayload payload,
             CancellationToken cancellationToken = default)
         {
             var settings = await this._adsPushConfigurationProvider.GetSettingsAsync(this._appName, cancellationToken);

@@ -4,6 +4,7 @@ using AdsPush.Abstraction;
 using AdsPush.Abstraction.Settings;
 using AdsPush.APNS.Extensions;
 using AdsPush.Firebase.Extensions;
+using Microsoft.Extensions.Configuration;
 
 namespace AdsPush.Extensions
 {
@@ -11,7 +12,6 @@ namespace AdsPush.Extensions
     {
         /// <summary>
         /// Configures AdsPush service by passing the required settings.
-        /// Is settings is null, library check the "AdsPush" section of the AppSettings.[ENV].json file or matching environment variables.  
         /// <seealso cref="AdsPushAppSettings"/>
         /// </summary>
         /// <param name="services"></param>
@@ -19,12 +19,26 @@ namespace AdsPush.Extensions
         /// <returns></returns>
         public static IServiceCollection AddAdsPush(
             this IServiceCollection services,
-            Action<AdsPushAppSettings> settings = null)
+            Action<AdsPushSettings> settings)
         {
             services.AddFirebaseCloudMessagingServiceFactory();
             services.AddAppleNotificationServiceFactory();
+            services.AddSingleton<IAdsPushSenderFactory, AdsPushSenderFactory>();
             services.AddSingleton<IAdsPushConfigurationProvider, DefaultAdsPushConfigurationProvider>();
             services.Configure(settings);
+
+            return services;
+        }
+
+        public static IServiceCollection AddAdsPush(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.AddFirebaseCloudMessagingServiceFactory();
+            services.AddAppleNotificationServiceFactory();
+            services.AddSingleton<IAdsPushSenderFactory, AdsPushSenderFactory>();
+            services.AddSingleton<IAdsPushConfigurationProvider, DefaultAdsPushConfigurationProvider>();
+            services.Configure<AdsPushSettings>(configuration.GetSection("AdsPush"));
 
             return services;
         }

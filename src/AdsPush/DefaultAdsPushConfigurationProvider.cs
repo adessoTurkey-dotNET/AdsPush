@@ -11,10 +11,10 @@ namespace AdsPush
     /// </summary>
     public class DefaultAdsPushConfigurationProvider : IAdsPushConfigurationProvider
     {
-        private readonly IOptionsMonitor<AdsPushAppSettings> _options;
+        private readonly IOptionsMonitor<AdsPushSettings> _options;
 
         public DefaultAdsPushConfigurationProvider(
-            IOptionsMonitor<AdsPushAppSettings> options)
+            IOptionsMonitor<AdsPushSettings> options)
         {
             this._options = options;
         }
@@ -23,7 +23,7 @@ namespace AdsPush
             string appName,
             CancellationToken cancellationToken = default)
         {
-            return Task.FromResult(this._options.CurrentValue);
+            return Task.FromResult(this._options.CurrentValue[appName]);
         }
     }
 }

@@ -142,7 +142,7 @@ namespace AdsPush.APNS
 
         public async Task SendAsync(
             string deviceToken,
-            AdsPushPayload payload,
+            AdsPushBasicSendPayload payload,
             CancellationToken cancellationToken = default)
         {
             var response = await this.SendAsync(

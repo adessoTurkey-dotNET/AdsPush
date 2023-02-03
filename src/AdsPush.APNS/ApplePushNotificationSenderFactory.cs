@@ -6,7 +6,7 @@ using AdsPush.APNS.Settings;
 
 namespace AdsPush.APNS
 {
-    internal class ApplePushNotificationSenderFactory:  IApplePushNotificationSenderFactory
+    public class ApplePushNotificationSenderFactory:  IApplePushNotificationSenderFactory
     {
         public ApplePushNotificationSenderFactory(
             APNSSettingsSection apnsSettingsSection,

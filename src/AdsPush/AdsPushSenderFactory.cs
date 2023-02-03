@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using AdsPush.Abstraction;
+using AdsPush.Abstraction.Settings;
 using AdsPush.APNS;
 using AdsPush.Firebase;
 
@@ -23,6 +24,7 @@ namespace AdsPush
             this._firebasePushNotificationSenderFactory = firebasePushNotificationSenderFactory;
         }
 
+        
         /// <inheritdoc />
         public IAdsPushSender GetSender(
             string appName)

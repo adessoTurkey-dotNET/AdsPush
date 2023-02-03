@@ -1,7 +1,7 @@
 using AdsPush.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAdsPush();
+builder.Services.AddAdsPush(builder.Configuration);
 
 // Add services to the container.
 
