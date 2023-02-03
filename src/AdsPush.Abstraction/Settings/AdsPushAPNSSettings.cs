@@ -30,7 +30,7 @@ namespace AdsPush.Abstraction.Settings
 
         /// <summary>
         /// Development or Production server.
-        /// <seealso cref="ApnServerType"/>
+        /// <seealso cref="APNSEnvironmentType"/>
         /// </summary>
         public APNSEnvironmentType EnvironmentType { get; set; }
     }

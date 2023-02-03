@@ -11,6 +11,7 @@ namespace AdsPush.Extensions
     {
         /// <summary>
         /// Configures AdsPush service by passing the required settings.
+        /// Is settings is null, library check the "AdsPush" section of the AppSettings.[ENV].json file or matching environment variables.  
         /// <seealso cref="AdsPushAppSettings"/>
         /// </summary>
         /// <param name="services"></param>
@@ -18,7 +19,7 @@ namespace AdsPush.Extensions
         /// <returns></returns>
         public static IServiceCollection AddAdsPush(
             this IServiceCollection services,
-            Action<AdsPushAppSettings> settings)
+            Action<AdsPushAppSettings> settings = null)
         {
             services.AddFirebaseCloudMessagingServiceFactory();
             services.AddAppleNotificationServiceFactory();
