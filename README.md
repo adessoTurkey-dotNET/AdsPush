@@ -7,6 +7,8 @@ AdsPush server-side library for sending notification by connecting to APNS & FCM
 You have two easy options to be able configure AdsPush
 
 1. Using Microsoft Dependency Injection (recommended)
+   - Using default configuration provider (Microsoft Options Pattern)
+   - Using custom configuration provider.
 2. Using direct sender instance.
 
 #### Microsoft Dependency Injection
@@ -16,10 +18,21 @@ Microsoft Dependency Injection is Microsoft's IOC library coming with .NET Core.
 If you're sing .NET 6 or newer version in `Program.cs`
 
 ```csharp
+
 using AdsPush.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAdsPush(builder.Configuration);
+//Option 1:From configuration
+builder.Services.AddAdsPush(this.Congiguration);
+    
+//Option 2:From Action
+builder.Services.AddAdsPush(options => 
+{
+    //Your configurations
+});
+    
+//Option 3:From custom provider that is implementation of IAdsPushConfigurationProvider interface.
+builder.Services.AddAdsPush<MyProivdr>();
 ```
 If you're sing .NET 5 or any .NET Core version in `Startup.cs`
 
@@ -30,7 +43,19 @@ using AdsPush.Extensions;
  public override void ConfigureServices(IServiceCollection services)
  {
     //your code...
+    
+    //Option 1:From configuration
     services.AddAdsPush(this.Congiguration);
+    
+    //Option 2:From Action
+    services.AddAdsPush(options => 
+    {
+        //Your configurations
+    });
+    
+    //Option 3:From custom provider that is implementation of IAdsPushConfigurationProvider interface.
+    services.AddAdsPush<MyProivdr>();
+    
 }   
 ```
 
