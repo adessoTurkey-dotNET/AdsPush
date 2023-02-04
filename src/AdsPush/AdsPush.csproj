@@ -9,27 +9,24 @@
             AdsPush is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
         </Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageIconUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png</PackageIconUrl>
+        <PackageIconUrl>logo.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
         <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>
         <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj" />
-      <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj" />
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
+        <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj"/>
+        <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
-        <HintPath>..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\6.0.12\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0"/>
     </ItemGroup>
 
 </Project>
