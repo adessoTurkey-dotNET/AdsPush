@@ -2,6 +2,18 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <PackageId>AdsPush</PackageId>
+        <Authors>Anıl Dursun ŞENEL</Authors>
+        <PackageTags>push;APNS;service-side-push-library;Firebase;Apple;FCM</PackageTags>
+        <Description>
+            AdsPush is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
+        </Description>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageIconUrl>https://github.com/adessoTurkey-dotNET/AdsPush/logo.png</PackageIconUrl>
+        <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
+        <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>
+        <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
     </ItemGroup>
 

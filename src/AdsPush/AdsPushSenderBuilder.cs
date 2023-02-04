@@ -9,16 +9,28 @@ using AdsPush.Firebase.Settings;
 
 namespace AdsPush
 {
+    /// <summary>
+    /// Use to create <see cref="IAdsPushSender"/> instance.
+    /// </summary>
     public class AdsPushSenderBuilder
     {
         private readonly AdsPushAppSettings _adsPushAppSettings;
         private HttpClient _apnsHttpClient;
     
+        /// <summary>
+        /// 
+        /// </summary>
         public AdsPushSenderBuilder()
         {
             _adsPushAppSettings = new AdsPushAppSettings();
         }
     
+        /// <summary>
+        /// Use to configure APNS for sender.
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="httpClient"></param>
+        /// <returns></returns>
         public AdsPushSenderBuilder ConfigureApns(
             AdsPushAPNSSettings settings,
             HttpClient httpClient = null)
@@ -30,6 +42,12 @@ namespace AdsPush
             return this;
         }
     
+        /// <summary>
+        /// Use to configure Firebase Cloud Messaging for sender.
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="targets"></param>
+        /// <returns></returns>
         public AdsPushSenderBuilder ConfigureFirebase(
             AdsPushFirebaseSettings settings,
             params AdsPushTarget[] targets)
@@ -43,6 +61,10 @@ namespace AdsPush
             return this;
         }
     
+        /// <summary>
+        /// Build the configured sender.
+        /// </summary>
+        /// <returns></returns>
         public IAdsPushSender BuildSender()
         {
             var appName = Guid.NewGuid().ToString();

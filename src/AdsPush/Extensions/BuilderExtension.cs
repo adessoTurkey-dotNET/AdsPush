@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace AdsPush.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class BuilderExtension
     {
         /// <summary>
@@ -30,6 +33,12 @@ namespace AdsPush.Extensions
             return services;
         }
 
+        /// <summary>
+        /// Configure AdsPush using default Microsoft Options Pattern configuration.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddAdsPush(
             this IServiceCollection services,
             IConfiguration configuration)

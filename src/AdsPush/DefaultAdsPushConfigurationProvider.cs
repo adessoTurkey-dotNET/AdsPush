@@ -13,12 +13,17 @@ namespace AdsPush
     {
         private readonly IOptionsMonitor<AdsPushSettings> _options;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public DefaultAdsPushConfigurationProvider(
             IOptionsMonitor<AdsPushSettings> options)
         {
             this._options = options;
         }
 
+        /// <inheritdoc />
         public Task<AdsPushAppSettings> GetSettingsAsync(
             string appName,
             CancellationToken cancellationToken = default)

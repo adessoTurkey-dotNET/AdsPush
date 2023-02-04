@@ -6,6 +6,9 @@ using AdsPush.Firebase;
 
 namespace AdsPush
 {
+    /// <summary>
+    /// Use to send notification
+    /// </summary>
     public interface IAdsPushSender
     {
         /// <summary>
@@ -23,7 +26,16 @@ namespace AdsPush
             AdsPushBasicSendPayload payload,
             CancellationToken cancellationToken = default);
 
+        /// <summary>
+        /// Use to access whole platform specific options for APNS. 
+        /// </summary>
+        /// <returns></returns>
         IApplePushNotificationSender GetApnsSender();
+        
+        /// <summary>
+        /// Use to access whole platform specific options for Firebase. 
+        /// </summary>
+        /// <returns></returns>
         IFirebasePushNotificationSender GetFirebaseSender();
     }
 }

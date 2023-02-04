@@ -6,6 +6,9 @@ using AdsPush.Firebase;
 
 namespace AdsPush
 {
+    /// <summary>
+    /// Implementation of <see cref="IAdsPushSenderFactory"/>
+    /// </summary>
     public class AdsPushSenderFactory : IAdsPushSenderFactory
     {
         private readonly ConcurrentDictionary<string, IAdsPushSender> _senders;
@@ -13,6 +16,12 @@ namespace AdsPush
         private readonly IApplePushNotificationSenderFactory _applePushNotificationSenderFactory;
         private readonly IFirebasePushNotificationSenderFactory _firebasePushNotificationSenderFactory;
        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="adsPushConfigurationProvider"></param>
+        /// <param name="applePushNotificationSenderFactory"></param>
+        /// <param name="firebasePushNotificationSenderFactory"></param>
         public AdsPushSenderFactory(
             IAdsPushConfigurationProvider adsPushConfigurationProvider,
             IApplePushNotificationSenderFactory applePushNotificationSenderFactory,

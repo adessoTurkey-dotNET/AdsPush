@@ -7,6 +7,9 @@ using AdsPush.Firebase;
 
 namespace AdsPush
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AdsPushSender : IAdsPushSender
     {
         private readonly string _appName;
@@ -14,6 +17,13 @@ namespace AdsPush
         private readonly IFirebasePushNotificationSenderFactory _firebasePushNotificationSenderFactory;
         private readonly IApplePushNotificationSenderFactory _applePushNotificationSenderFactory;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="adsPushConfigurationProvider"></param>
+        /// <param name="firebasePushNotificationSenderFactory"></param>
+        /// <param name="applePushNotificationSenderFactory"></param>
         public AdsPushSender(
             string appName,
             IAdsPushConfigurationProvider adsPushConfigurationProvider,
@@ -92,11 +102,13 @@ namespace AdsPush
             }
         }
 
+        /// <inheritdoc />
         public IApplePushNotificationSender GetApnsSender()
         {
             return _applePushNotificationSenderFactory.GetSender(this._appName);
         }
 
+        /// <inheritdoc />
         public IFirebasePushNotificationSender GetFirebaseSender()
         {
             return this._firebasePushNotificationSenderFactory.GetSender(this._appName);
