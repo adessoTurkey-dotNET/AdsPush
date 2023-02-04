@@ -8,7 +8,6 @@
         <Description>
             AdsPush is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
         </Description>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
         <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
@@ -19,13 +18,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
+        <PackageReference Include="FirebaseAdmin" Version="2.3.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj" />
+        <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj"/>
     </ItemGroup>
 
 </Project>
