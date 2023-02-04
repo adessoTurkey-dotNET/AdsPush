@@ -1,9 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <!-- <a href="https://github.com/adessoTurkey-dotNET/AdsPush">
-    <img src="https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png" alt="Logo" width="200" height="200">
-  </a> -->
+<img src="https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png" alt="Logo" width="200" height="200">
+  
 
 <h3 align="center">AdsPush</h3>
 
