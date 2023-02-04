@@ -15,7 +15,6 @@
         <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>
         <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     </PropertyGroup>
 
     <ItemGroup>
