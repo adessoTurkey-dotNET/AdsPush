@@ -48,7 +48,7 @@ namespace AdsPush
             {
                 case AdsPushProvider.Apns:
 
-                    if (target is not AdsPushTarget.Ios)
+                    if (target != AdsPushTarget.Ios)
                     {
                         throw new AdsPushException(
                             $"{target} target don't support sending wia APNS. ",

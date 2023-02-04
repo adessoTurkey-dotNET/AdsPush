@@ -10,8 +10,11 @@ namespace AdsPush.APNS.Extensions
         public static APNSRequest CreateRequest(
             this AdsPushBasicSendPayload payload)
         {
-            payload.Parameters ??= new Dictionary<string, object>();
-          
+            if (payload.Parameters == null)
+            {
+                payload.Parameters = new Dictionary<string, object>();
+            }
+
             return new APNSRequest()
             {
                 AdditionalParameters = payload.Parameters,

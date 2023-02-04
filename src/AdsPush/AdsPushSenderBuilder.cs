@@ -3,71 +3,74 @@ using System.Net.Http;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.Settings;
 using AdsPush.APNS;
+using AdsPush.APNS.Settings;
 using AdsPush.Firebase;
+using AdsPush.Firebase.Settings;
 
-namespace AdsPush;
-
-public class AdsPushSenderBuilder
+namespace AdsPush
 {
-    private readonly AdsPushAppSettings _adsPushAppSettings;
-    private HttpClient _apnsHttpClient = null;
-
-    public AdsPushSenderBuilder()
+    public class AdsPushSenderBuilder
     {
-        this._adsPushAppSettings = new AdsPushAppSettings();
-    }
-
-    public AdsPushSenderBuilder ConfigureApns(
-        AdsPushAPNSSettings settings,
-        HttpClient httpClient = null)
-    {
-        this._adsPushAppSettings.Apns = settings;
-        this._adsPushAppSettings.TargetMappings.Add(AdsPushTarget.Ios, AdsPushProvider.Apns);
-        this._apnsHttpClient = httpClient ?? new HttpClient();
-
-        return this;
-    }
-
-    public AdsPushSenderBuilder ConfigureFirebase(
-        AdsPushFirebaseSettings settings,
-        params AdsPushTarget[] targets)
-    {
-        this._adsPushAppSettings.Firebase = settings;
-        foreach (var target in targets)
+        private readonly AdsPushAppSettings _adsPushAppSettings;
+        private HttpClient _apnsHttpClient;
+    
+        public AdsPushSenderBuilder()
         {
-            this._adsPushAppSettings.TargetMappings[target] = AdsPushProvider.Firebase;
+            _adsPushAppSettings = new AdsPushAppSettings();
         }
-        
-        return this;
-    }
-
-    public IAdsPushSender BuildSender()
-    {
-        var appName = Guid.NewGuid().ToString();
-        var provider = new BasicAdsPushConfigurationProvider(this._adsPushAppSettings);
-
-        var apnsFactory = _adsPushAppSettings.Apns != null
-            ? new ApplePushNotificationSenderFactory(new()
+    
+        public AdsPushSenderBuilder ConfigureApns(
+            AdsPushAPNSSettings settings,
+            HttpClient httpClient = null)
+        {
+            _adsPushAppSettings.Apns = settings;
+            _adsPushAppSettings.TargetMappings.Add(AdsPushTarget.Ios, AdsPushProvider.Apns);
+            _apnsHttpClient = httpClient ?? new HttpClient();
+    
+            return this;
+        }
+    
+        public AdsPushSenderBuilder ConfigureFirebase(
+            AdsPushFirebaseSettings settings,
+            params AdsPushTarget[] targets)
+        {
+            _adsPushAppSettings.Firebase = settings;
+            foreach (var target in targets)
             {
+                _adsPushAppSettings.TargetMappings[target] = AdsPushProvider.Firebase;
+            }
+            
+            return this;
+        }
+    
+        public IAdsPushSender BuildSender()
+        {
+            var appName = Guid.NewGuid().ToString();
+            var provider = new BasicAdsPushConfigurationProvider(_adsPushAppSettings);
+    
+            var apnsFactory = _adsPushAppSettings.Apns != null
+                ? new ApplePushNotificationSenderFactory(new APNSSettingsSection
                 {
-                    appName, _adsPushAppSettings.Apns
-                }
-            }, _apnsHttpClient)
-            : null;
-
-        var firebaseFactory = _adsPushAppSettings.Firebase != null
-            ? new FirebasePushNotificationSenderFactory(new()
-            {
+                    {
+                        appName, _adsPushAppSettings.Apns
+                    }
+                }, _apnsHttpClient)
+                : null;
+    
+            var firebaseFactory = _adsPushAppSettings.Firebase != null
+                ? new FirebasePushNotificationSenderFactory(new FirebaseAppSettingsSection
                 {
-                    appName, _adsPushAppSettings.Firebase
-                }
-            })
-            : null;
-
-        return new AdsPushSender(
-            appName,
-            provider,
-            firebaseFactory,
-            apnsFactory);
+                    {
+                        appName, _adsPushAppSettings.Firebase
+                    }
+                })
+                : null;
+    
+            return new AdsPushSender(
+                appName,
+                provider,
+                firebaseFactory,
+                apnsFactory);
+        }
     }
 }

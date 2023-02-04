@@ -15,7 +15,10 @@ namespace AdsPush.Firebase.Extensions
             AdsPushTarget target,
             string deviceToken)
         {
-            payload.Parameters ??= new Dictionary<string, object>();
+            if (payload.Parameters == null)
+            {
+                payload.Parameters = new Dictionary<string, object>();
+            }
 
             var message = new Message()
             {
@@ -87,18 +90,34 @@ namespace AdsPush.Firebase.Extensions
         {
             if (firebaseException is FirebaseMessagingException firebaseMessagingException)
             {
-                var errorType = firebaseMessagingException.MessagingErrorCode switch
+                AdsPushErrorType errorType;
+                switch (firebaseMessagingException.MessagingErrorCode)
                 {
-                    MessagingErrorCode.ThirdPartyAuthError => AdsPushErrorType.InvalidAuthConfiguration,
-                    MessagingErrorCode.InvalidArgument => AdsPushErrorType.InvalidArgument,
-                    MessagingErrorCode.Internal => AdsPushErrorType.ServiceUnavailable,
-                    MessagingErrorCode.QuotaExceeded => AdsPushErrorType.Unknown,
-                    MessagingErrorCode.SenderIdMismatch => AdsPushErrorType.InvalidAuthConfiguration,
-                    MessagingErrorCode.Unavailable => AdsPushErrorType.ServiceUnavailable,
-                    MessagingErrorCode.Unregistered => AdsPushErrorType.InvalidToken,
-                    null => AdsPushErrorType.Unknown,
-                    _ => AdsPushErrorType.Unknown
-                };
+                    case MessagingErrorCode.ThirdPartyAuthError:
+                        errorType = AdsPushErrorType.InvalidAuthConfiguration;
+                        break;
+                    case MessagingErrorCode.InvalidArgument:
+                        errorType = AdsPushErrorType.InvalidArgument;
+                        break;
+                    case MessagingErrorCode.Internal:
+                        errorType = AdsPushErrorType.ServiceUnavailable;
+                        break;
+                    case MessagingErrorCode.QuotaExceeded:
+                        errorType = AdsPushErrorType.Unknown;
+                        break;
+                    case MessagingErrorCode.SenderIdMismatch:
+                        errorType = AdsPushErrorType.InvalidAuthConfiguration;
+                        break;
+                    case MessagingErrorCode.Unavailable:
+                        errorType = AdsPushErrorType.ServiceUnavailable;
+                        break;
+                    case MessagingErrorCode.Unregistered:
+                        errorType = AdsPushErrorType.InvalidToken;
+                        break;
+                    default:
+                        errorType = AdsPushErrorType.Unknown;
+                        break;
+                }
 
                 return new AdsPushException(
                     firebaseMessagingException.Message,

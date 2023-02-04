@@ -9,33 +9,7 @@ namespace AdsPush.APNS.Extensions
 {
     public static class BuilderExtensions
     {
-        /// <summary>
-        /// Registers <see cref="IApplePushNotificationSender"/> to be able send notification to the APNS.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="apnsSettingsAction"></param>
-        /// <param name="httpClient"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddAppleNotificationService(
-            this IServiceCollection services,
-            Action<AdsPushAPNSSettings> apnsSettingsAction = null,
-            HttpClient httpClient = null)
-        {
-            var apnsSettings = new AdsPushAPNSSettings();
-            apnsSettingsAction?.Invoke(apnsSettings);
-
-            services.AddSingleton<IApplePushNotificationSender>(sender =>
-            {
-                apnsSettings = apnsSettingsAction == null
-                    ? sender.GetRequiredService<IOptions<AdsPushAPNSSettings>>().Value
-                    : apnsSettings;
-
-                return new ApplePushNotificationSender(apnsSettings, httpClient ?? new HttpClient());
-            });
-
-            return services;
-        }
-
+  
         /// <summary>
         /// Configures <see cref="IApplePushNotificationSenderFactory"/> to be able to creates <see cref="IApplePushNotificationSender"/> instance.
         /// </summary>

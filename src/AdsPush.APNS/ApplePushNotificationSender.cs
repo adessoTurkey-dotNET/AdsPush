@@ -22,8 +22,8 @@ namespace AdsPush.APNS
     /// </summary>
     internal class ApplePushNotificationSender : IApplePushNotificationSender
     {
-        private static readonly ConcurrentDictionary<string, Tuple<string, DateTime>> _tokens = new ConcurrentDictionary<string, Tuple<string, DateTime>>();
-        private static readonly Dictionary<APNSEnvironmentType, string> _servers = new Dictionary<APNSEnvironmentType, string> { { APNSEnvironmentType.Development, "https://api.development.push.apple.com:443" }, { APNSEnvironmentType.Production, "https://api.push.apple.com:443" } };
+        private static readonly ConcurrentDictionary<string, Tuple<string, DateTime>> Tokens = new ConcurrentDictionary<string, Tuple<string, DateTime>>();
+        private static readonly Dictionary<APNSEnvironmentType, string> Servers = new Dictionary<APNSEnvironmentType, string> { { APNSEnvironmentType.Development, "https://api.development.push.apple.com:443" }, { APNSEnvironmentType.Production, "https://api.push.apple.com:443" } };
 
         private const string ApnIdHeader = "apns-id";
         private const int TokenExpiresMinutes = 50;
@@ -45,7 +45,7 @@ namespace AdsPush.APNS
 
             if (http.BaseAddress == null)
             {
-                http.BaseAddress = new Uri(_servers[settings.EnvironmentType]);
+                http.BaseAddress = new Uri(Servers[settings.EnvironmentType]);
             }
         }
 
@@ -64,9 +64,9 @@ namespace AdsPush.APNS
                 ["aps"] = JObject.FromObject(apnsRequest.ApnsPayload)
             };
 
-            foreach (var (key, value) in apnsRequest.AdditionalParameters)
+            foreach (var item in apnsRequest.AdditionalParameters)
             {
-                jsonObject[key] = JToken.FromObject(value);
+                jsonObject[item.Key] = JToken.FromObject(item.Value);
             }
 
             var json = JsonHelper.Serialize(jsonObject);
@@ -115,7 +115,7 @@ namespace AdsPush.APNS
         {
             var path = $"/3/device/{deviceToken}";
 
-            using var message = new HttpRequestMessage(HttpMethod.Post, path);
+            var message = new HttpRequestMessage(HttpMethod.Post, path);
             message.Version = new Version(2, 0);
             message.Content = new StringContent(jsonPayload);
 
@@ -128,11 +128,11 @@ namespace AdsPush.APNS
             message.Headers.Add("apns-push-type", isBackground ? "background" : "alert"); // required for iOS 13+
             message.Headers.Add(ApnIdHeader, apnsId.ToString());
 
-            using var response = await this._http.SendAsync(message, cancellationToken);
+            var response = await this._http.SendAsync(message, cancellationToken);
             var succeed = response.IsSuccessStatusCode;
-            var content = await response.Content.ReadAsStringAsync(cancellationToken);
+            var content = await response.Content.ReadAsStringAsync();
             var error = JsonHelper.Deserialize<APNSError>(content);
-            if (error is not null)
+            if (error != null)
             {
                 error.HttpResponse = response;
             }
@@ -160,13 +160,13 @@ namespace AdsPush.APNS
 
         private string GetJwtToken()
         {
-            var (token, date) = _tokens.GetOrAdd(this._settings.AppBundleIdentifier, _ => new Tuple<string, DateTime>(this.CreateJwtToken(), DateTime.UtcNow));
+            var (token, date) = Tokens.GetOrAdd(this._settings.AppBundleIdentifier, _ => new Tuple<string, DateTime>(this.CreateJwtToken(), DateTime.UtcNow));
             if (date >= DateTime.UtcNow.AddMinutes(-TokenExpiresMinutes))
             {
                 return token;
             }
 
-            _tokens.TryRemove(this._settings.AppBundleIdentifier, out _);
+            Tokens.TryRemove(this._settings.AppBundleIdentifier, out _);
             return this.GetJwtToken();
         }
 
@@ -179,7 +179,7 @@ namespace AdsPush.APNS
             var unsignedJwtData = $"{headerBase64}.{payloadBase64}";
             var unsignedJwtBytes = Encoding.UTF8.GetBytes(unsignedJwtData);
 
-            using var dsa = AppleCryptoHelper.GetEllipticCurveAlgorithm(CleanP8Key(this._settings.P8PrivateKey));
+            var dsa = AppleCryptoHelper.GetEllipticCurveAlgorithm(CleanP8Key(this._settings.P8PrivateKey));
             var signature = dsa.SignData(unsignedJwtBytes, 0, unsignedJwtBytes.Length, HashAlgorithmName.SHA256);
             return $"{unsignedJwtData}.{Convert.ToBase64String(signature)}";
         }
@@ -206,7 +206,7 @@ namespace AdsPush.APNS
                 lines.RemoveAt(0);
             }
 
-            if (0 != lines.Count && lines[^1].StartsWith("-----END PRIVATE KEY-----"))
+            if (0 != lines.Count && lines[lines.Count -1].StartsWith("-----END PRIVATE KEY-----"))
             {
                 lines.RemoveAt(lines.Count - 1);
             }
