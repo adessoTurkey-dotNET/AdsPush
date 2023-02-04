@@ -9,7 +9,7 @@
             AdsPush is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
         </Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageIconUrl>https://github.com/adessoTurkey-dotNET/AdsPush/logo.png</PackageIconUrl>
+        <PackageIconUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
         <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>

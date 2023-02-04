@@ -1,9 +1,29 @@
-# AdsPush
-AdsPush server-side library for sending notification by connecting to APNS & FCM.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <!-- <a href="https://github.com/adessoTurkey-dotNET/AdsPush">
+    <img src="logo.png" alt="Logo" width="80" height="80">
+  </a> -->
 
-## Get it started 
+<h3 align="center">AdsPush</h3>
 
-### Configuration
+  <p align="center">
+   AdsPush server-side library for sending notification by connecting to APNS & FCM.
+    <br />
+    <a href="https://www.nuget.org/packages/AdsPush">NuGet</a>
+    ·
+    <a href="https://github.com/adessoTurkey-dotNET/AdsPush/issues">Report Bug or Request Feature</a>
+    ·
+    <a href="mailto:mail@anildursunsenel.com?subject=AdsPush">Contect Me Via Mail</a>
+    ·
+    <a href="https://www.linkedin.com/in/anıl-dursun-şenel">Contect Me Via Linkedin</a>
+  </p>
+</div>
+
+
+# Get It Started 
+
+## Configuration
 You have two easy options to be able configure AdsPush
 
 1. Using Microsoft Dependency Injection (recommended)
@@ -131,7 +151,7 @@ public MyService(
 
 ```
 
-#### Using Sender Instance
+### Using Sender Instance
 
 The following lines of codes can be used without any DI configuration.
 
@@ -159,7 +179,7 @@ var sender = builder
   
 ```
 
-### Sending notifications
+## Sending notifications
 
 When you obtain `IAdsPushSender` instance by using one the methods shown above, you're ready to send notification. The following sample code can be used trigger a basic notification request.
 
