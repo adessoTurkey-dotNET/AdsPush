@@ -2,13 +2,13 @@
 <br />
 <div align="center">
   <!-- <a href="https://github.com/adessoTurkey-dotNET/AdsPush">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png" alt="Logo" width="80" height="80">
   </a> -->
 
 <h3 align="center">AdsPush</h3>
 
   <p align="center">
-   AdsPush server-side library for sending notification by connecting to APNS & FCM.
+      <b>AdsPush</b> is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
     <br />
     <a href="https://www.nuget.org/packages/AdsPush">NuGet</a>
     ·
@@ -20,10 +20,25 @@
   </p>
 </div>
 
+# Features
+1. Abstraction sender works with APNS & FCM
+2. Full support for all functionality platform specific parameters.
+3. Support up-to-date recommended APIs.  
+4. Easy to use.
+5. Advanced configuration options
+
 
 # Get It Started 
+1. Install AdsPush by using the following command
 
-## Configuration
+    ` dotnet add package AdsPush ` from dotnet cli 
+   
+    or  ` Install-Package AdsPush ` from package console
+
+2. Decide using platform (APNS or/and FCM) and get the required configuration files from the portal.
+3. Apply the following instructions to configure and send notifications.
+
+# Configuration
 You have two easy options to be able configure AdsPush
 
 1. Using Microsoft Dependency Injection (recommended)
@@ -31,7 +46,7 @@ You have two easy options to be able configure AdsPush
    - Using custom configuration provider.
 2. Using direct sender instance.
 
-#### Microsoft Dependency Injection
+### Microsoft Dependency Injection
 
 Microsoft Dependency Injection is Microsoft's IOC library coming with .NET Core. AdsPush supports using MDI to be able to manage your push configuration and sending operations.
 
