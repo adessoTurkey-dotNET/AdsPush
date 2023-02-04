@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System;
+using System.Collections.Generic;
 using AdsPush;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.APNS;
@@ -22,9 +24,11 @@ var sender = builder
     .ConfigureFirebase(firebaseSettings, AdsPushTarget.Android)
     .BuildSender();
 
+var apnDeviceToken = "15f6fdd0f34a7e0f46301a817536f0fb1b2ab05b09b3fae02beba2854a1a2a16";
+
 await sender.BasicSendAsync(
     AdsPushTarget.Ios,
-    "79eb1b9e623bbca0d2b218f44a18d7b8ef59dac4da5baa9949c3e99a48eb259a",
+    apnDeviceToken,
     new()
     {
         Title = AdsPushText.CreateUsingString("test"),
