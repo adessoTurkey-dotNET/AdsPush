@@ -1,33 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageId>AdsPush.APNS</PackageId>
-        <Authors>Anıl Dursun ŞENEL</Authors>
-        <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM</PackageTags>
-        <Description>
-            AdsPush is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
-        </Description>
-        <PackageIcon>logo.png</PackageIcon>
-        <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>
-        <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
-        <PackageReadmeFile>README-NUGET.md</PackageReadmeFile>
-        <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>AdsPush.APNS</PackageId>
+    <Authors>Anıl Dursun ŞENEL</Authors>
+    <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM</PackageTags>
+    <Description>
+      AdsPush is the server-side push notification library that fully supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging) features and works with the the most common .NET platforms. It puts together good abstraction, easy using and full support for advanced use cases.
+    </Description>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
+    <PackageReadmeFile>README-NUGET.md</PackageReadmeFile>
+    <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+    <PackageLicenseExpression>BSD 3-Clause License</PackageLicenseExpression>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-        <PackageReference Include="Portable.BouncyCastle" Version="1.8.10"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.10"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\"/>
-        <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
-        <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj"/>
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
+    <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj"/>
+  </ItemGroup>
 
 </Project>
