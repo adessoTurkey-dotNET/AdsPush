@@ -2,8 +2,14 @@ using System.Collections.Generic;
 
 namespace AdsPush.Abstraction.APNS
 {
+    /// <summary>
+    /// Native APNS request model.
+    /// </summary>
     public class APNSRequest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public APNSRequest()
         {
             this.AdditionalParameters = new Dictionary<string, object>();

@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageId>AdsPush</PackageId>
         <Authors>Anıl Dursun ŞENEL</Authors>
-        <PackageTags>push;APNS;service-side-push-library;Firebase;Apple;FCM</PackageTags>
+        <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;ios-push;android-push;notofication;push-notification</PackageTags>
         <Description>
             AdsPush is the server-side push notification library supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging)
         </Description>
@@ -14,12 +14,12 @@
         <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE</PackageLicenseUrl>
         <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReadmeFile>README-NUGET.md</PackageReadmeFile>
         <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+        <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\" />
         <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
         <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj" />
         <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj" />

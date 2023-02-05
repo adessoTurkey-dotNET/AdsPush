@@ -8,6 +8,9 @@ namespace AdsPush.Abstraction.APNS
     /// </summary>
     public class APNSPayload
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("apns-push-type")]
         public string PushType { get; set; } = "alert";
 

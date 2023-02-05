@@ -9,6 +9,11 @@ namespace AdsPush.Abstraction.Firebase
     /// </summary>
     public sealed class FirebaseNotificationBatchResult
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="notificationResults"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public FirebaseNotificationBatchResult(
             IList<FirebaseNotificationResult> notificationResults)
         {

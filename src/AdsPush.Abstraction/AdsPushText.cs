@@ -2,8 +2,16 @@ using System.Collections.Generic;
 
 namespace AdsPush.Abstraction
 {
+    /// <summary>
+    /// Use to create notification text.
+    /// </summary>
     public sealed class AdsPushText
     {
+        /// <summary>
+        /// Sets flat string to the notification.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static AdsPushText CreateUsingString(
             string text)
         {
@@ -12,6 +20,12 @@ namespace AdsPush.Abstraction
                 null);
         }
         
+        /// <summary>
+        /// Sets localized text model supported by APNS and FXM 
+        /// </summary>
+        /// <param name="localizationKey"></param>
+        /// <param name="localizationArgs"></param>
+        /// <returns></returns>
         public static AdsPushText CreateUsingLocalization(
             string localizationKey,
             IEnumerable<string> localizationArgs)
@@ -31,8 +45,19 @@ namespace AdsPush.Abstraction
             this.LocalizationArgs = localizationArgs;
         }
         
+        /// <summary>
+        /// Flat string.
+        /// </summary>
         public string Text { get; }
+        
+        /// <summary>
+        /// Localize string. 
+        /// </summary>
         public string LocalizationKey { get; }
+        
+        /// <summary>
+        /// Localize string parameters.
+        /// </summary>
         public IEnumerable<string> LocalizationArgs { get; }
     }
 }
