@@ -11,14 +11,15 @@
     <PackageIcon>logo.png</PackageIcon>
     <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
     <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
     <PackageReadmeFile>README-NUGET.md</PackageReadmeFile>
     <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageLicenseExpression>BSD 3-Clause License</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\"/>
     <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
     <PackageReference Include="FirebaseAdmin" Version="2.3.0"/>

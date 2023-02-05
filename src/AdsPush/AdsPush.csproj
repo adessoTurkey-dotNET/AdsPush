@@ -12,14 +12,15 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
         <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
         <PackageReadmeFile>README-NUGET.md</PackageReadmeFile>
         <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
-        <PackageLicenseExpression>BSD 3-Clause License</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\" />
+        <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
         <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
         <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj" />
         <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj" />
