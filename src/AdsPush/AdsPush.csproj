@@ -1,10 +1,11 @@
+
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageId>AdsPush</PackageId>
-        <Authors>Anıl Dursun ŞENEL</Authors>
-        <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;ios-push;android-push;notofication;push-notification</PackageTags>
+        <Authors>Anil Dursun SENEL</Authors>
+        <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;ios-push;android-push;notofication;push-notification;push notification</PackageTags>
         <Description>
           AdsPush is the server-side push notification library that fully supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging) features and works with the the most common .NET platforms. It puts together good abstraction, easy using and full support for advanced use cases.
         </Description>
