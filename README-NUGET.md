@@ -1,6 +1,6 @@
 # AdsPush
 
-**AdsPush** is the server-side push notification library that fully supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging) features and works with the the most common .NET platforms. It puts together good abstraction, easy using and full support for advanced use cases.
+**AdsPush** is the server-side push notification library that fully supports  APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging) features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
 
 - [NuGet](https://www.nuget.org/packages/AdsPush) 
 - [Report Bug or Request Feature](https://github.com/adessoTurkey-dotNET/AdsPush/issues) 
@@ -83,10 +83,10 @@ using AdsPush.Extensions;
 
 And put the following section in your in your `appsettings.[ENV].json`
 
-```json
+```
 {
   "Logging": {
-  ...
+  //your other code...
   },
   "AdsPush": {
     "MyApp": { 
@@ -115,12 +115,12 @@ And put the following section in your in your `appsettings.[ENV].json`
       }
     }
   }
- ...
+ //your other code...
 }
 ```
 If you wish to use host/pod environment or any secret provider you can set the following environment variables.
 
-```config
+```
 AdsPush__MyApp__Apns__AppBundleIdentifier=<App slug / bundle name>
 AdsPush__MyApp__Apns__EnvironmentType=<Apns Env one of Development or Production>
 AdsPush__MyApp__Apns__P8PrivateKey=<p8 certificate string without any space and start and end tags>

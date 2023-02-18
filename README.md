@@ -1,3 +1,12 @@
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![NuGet][nuget-shield]][nuget-url]
+[![MIT License][license-shield]][license-url]
+
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -7,7 +16,7 @@
 <h3 align="center">AdsPush</h3>
 
   <p align="center">
-<b>AdsPush</b> is the server-side push notification library that fully supports fully APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging) features and works with the the most common .NET platforms. It puts together good abstraction, easy using and full support for advanced use cases.
+<b>AdsPush</b> is the server-side push notification library that fully supports  <b>APNS(Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
  <br />
     <a href="https://www.nuget.org/packages/AdsPush">NuGet</a>
     ·
@@ -95,7 +104,7 @@ using AdsPush.Extensions;
 
 And put the following section in your in your `appsettings.[ENV].json`
 
-```json
+```
 {
   "Logging": {
   ...
@@ -132,7 +141,7 @@ And put the following section in your in your `appsettings.[ENV].json`
 ```
 If you wish to use host/pod environment or any secret provider you can set the following environment variables.
 
-```config
+```
 AdsPush__MyApp__Apns__AppBundleIdentifier=<App slug / bundle name>
 AdsPush__MyApp__Apns__EnvironmentType=<Apns Env one of Development or Production>
 AdsPush__MyApp__Apns__P8PrivateKey=<p8 certificate string without any space and start and end tags>
@@ -272,3 +281,23 @@ var firebaseResult = await sender
         }
     });
 ```
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
+[contributors-url]: https://github.com/adessoTurkey-dotNET/AdsPush/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
+[forks-url]: https://github.com/adessoTurkey-dotNET/AdsPush/network/members
+[stars-shield]: https://img.shields.io/github/stars/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
+[stars-url]: https://github.com/adessoTurkey-dotNET/AdsPush/stargazers
+[issues-shield]: https://img.shields.io/github/issues/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
+[issues-url]: https://github.com/adessoTurkey-dotNET/AdsPush/issues
+[license-shield]: https://img.shields.io/github/license/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
+[license-url]: https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE.md
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/tolgacakirx
+[product-screenshot]: images/screenshot.png
+[.Net]: https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white
+[.Net-shield]: https://img.shields.io/badge/.NET-5C2D91?
+[nuget-shield]: https://img.shields.io/nuget/v/AdsPush?style=for-the-badge
+[nuget-url]: https://www.nuget.org/packages/AdsPush
