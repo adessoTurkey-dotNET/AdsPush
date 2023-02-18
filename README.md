@@ -1,10 +1,13 @@
 <!-- PROJECT SHIELDS -->
+<div align="center">
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![NuGet][nuget-shield]][nuget-url]
 [![MIT License][license-shield]][license-url]
+</div>
 
 
 <!-- PROJECT LOGO -->
@@ -18,8 +21,6 @@
   <p align="center">
 <b>AdsPush</b> is the server-side push notification library that fully supports  <b>APNS(Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
  <br />
-    <a href="https://www.nuget.org/packages/AdsPush">NuGet</a>
-    ·
     <a href="https://github.com/adessoTurkey-dotNET/AdsPush/issues">Report Bug or Request Feature</a>
     ·
     <a href="mailto:mail@anildursunsenel.com?subject=AdsPush">Contect Me Via Mail</a>
