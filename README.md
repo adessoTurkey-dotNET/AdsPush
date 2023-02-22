@@ -294,7 +294,7 @@ var firebaseResult = await sender
 [issues-shield]: https://img.shields.io/github/issues/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
 [issues-url]: https://github.com/adessoTurkey-dotNET/AdsPush/issues
 [license-shield]: https://img.shields.io/github/license/adessoTurkey-dotNET/AdsPush.svg?style=for-the-badge
-[license-url]: https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE.md
+[license-url]: https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tolgacakirx
 [product-screenshot]: images/screenshot.png
