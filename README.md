@@ -1,5 +1,5 @@
 <!-- PROJECT SHIELDS -->
-<div style="align-content: center">
+<div style="text-align: center">
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -12,13 +12,13 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div style="align-content: center" >
+<div style="text-align: center" >
 <img src="https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png" alt="Logo" width="200" height="200">
   
 
 <h3 align="center">AdsPush</h3>
 
-  <p style="align-content: center">
+  <p style="text-align: center">
 <b>AdsPush</b> is the server-side push notification library that fully supports  <b>APNS(Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
  <br />
     <a href="https://github.com/adessoTurkey-dotNET/AdsPush/issues">Report Bug or Request Feature</a>
