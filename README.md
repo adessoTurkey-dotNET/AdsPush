@@ -1,5 +1,5 @@
 <!-- PROJECT SHIELDS -->
-<div align="center">
+<div style="align-content: center">
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -12,13 +12,13 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div style="align-content: center" >
 <img src="https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png" alt="Logo" width="200" height="200">
   
 
 <h3 align="center">AdsPush</h3>
 
-  <p align="center">
+  <p style="align-content: center">
 <b>AdsPush</b> is the server-side push notification library that fully supports  <b>APNS(Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
  <br />
     <a href="https://github.com/adessoTurkey-dotNET/AdsPush/issues">Report Bug or Request Feature</a>
@@ -67,7 +67,7 @@ using AdsPush.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 //Option 1:From configuration
-builder.Services.AddAdsPush(this.Congiguration);
+builder.Services.AddAdsPush(this.Configuration);
     
 //Option 2:From Action
 builder.Services.AddAdsPush(options => 
@@ -76,7 +76,7 @@ builder.Services.AddAdsPush(options =>
 });
     
 //Option 3:From custom provider that is implementation of IAdsPushConfigurationProvider interface.
-builder.Services.AddAdsPush<MyProivdr>();
+builder.Services.AddAdsPush<MyProvider>();
 ```
 If you're sing .NET 5 or any .NET Core version in `Startup.cs`
 
@@ -89,7 +89,7 @@ using AdsPush.Extensions;
     //your code...
     
     //Option 1:From configuration
-    services.AddAdsPush(this.Congiguration);
+    services.AddAdsPush(this.Configuration);
     
     //Option 2:From Action
     services.AddAdsPush(options => 
@@ -98,7 +98,7 @@ using AdsPush.Extensions;
     });
     
     //Option 3:From custom provider that is implementation of IAdsPushConfigurationProvider interface.
-    services.AddAdsPush<MyProivdr>();
+    services.AddAdsPush<MyProvider>();
     
 }   
 ```
@@ -297,7 +297,6 @@ var firebaseResult = await sender
 [license-url]: https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tolgacakirx
-[product-screenshot]: images/screenshot.png
 [.Net]: https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white
 [.Net-shield]: https://img.shields.io/badge/.NET-5C2D91?
 [nuget-shield]: https://img.shields.io/nuget/v/AdsPush?style=for-the-badge
