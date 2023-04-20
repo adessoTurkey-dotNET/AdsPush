@@ -7,6 +7,15 @@
 - [Contact Me Via Mail](mailto:mail@anildursunsenel.com?subject=AdsPush) 
 - [Contact Me Via Linkedin](https://www.linkedin.com/in/anıl-dursun-şenel)
 
+# Table Of Content
+
+1. [Features](#features)
+2. [Get It Started](#get-it-started)
+3. [Configuration](#configuration)
+    1. [Microsoft Dependency Injection](#microsoft-dependency-injection)
+    2. [Using Sender Instance](#using-sender-instance)
+4. [Sending notifications](#sending-notifications)
+
 # Features
 1. Abstraction sender works with APNS & FCM
 2. Full support for all functionality platform specific parameters.
@@ -45,7 +54,7 @@ using AdsPush.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 //Option 1:From configuration
-builder.Services.AddAdsPush(this.Congiguration);
+builder.Services.AddAdsPush(this.Configuration);
     
 //Option 2:From Action
 builder.Services.AddAdsPush(options => 
@@ -54,7 +63,7 @@ builder.Services.AddAdsPush(options =>
 });
     
 //Option 3:From custom provider that is implementation of IAdsPushConfigurationProvider interface.
-builder.Services.AddAdsPush<MyProivdr>();
+builder.Services.AddAdsPush<MyProvider>();
 ```
 If you're sing .NET 5 or any .NET Core version in `Startup.cs`
 
@@ -67,7 +76,7 @@ using AdsPush.Extensions;
     //your code...
     
     //Option 1:From configuration
-    services.AddAdsPush(this.Congiguration);
+    services.AddAdsPush(this.Configuration);
     
     //Option 2:From Action
     services.AddAdsPush(options => 
@@ -76,7 +85,7 @@ using AdsPush.Extensions;
     });
     
     //Option 3:From custom provider that is implementation of IAdsPushConfigurationProvider interface.
-    services.AddAdsPush<MyProivdr>();
+    services.AddAdsPush<MyProvider>();
     
 }   
 ```
@@ -86,7 +95,7 @@ And put the following section in your in your `appsettings.[ENV].json`
 ```
 {
   "Logging": {
-  //your other code...
+  ...
   },
   "AdsPush": {
     "MyApp": { 
@@ -115,7 +124,7 @@ And put the following section in your in your `appsettings.[ENV].json`
       }
     }
   }
- //your other code...
+ ...
 }
 ```
 If you wish to use host/pod environment or any secret provider you can set the following environment variables.
