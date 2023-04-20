@@ -19,7 +19,8 @@
 <h3 align="center">AdsPush</h3>
 
   <p style="text-align: center">
-<b>AdsPush</b> is the server-side push notification library that fully supports  <b>APNS(Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
+<b>AdsPush</b> is the server-side push notification library that fully supports <b>APNS (Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the most common platforms. It offers good abstraction, is easy to use, and provides complete support for advanced use cases
+
  <br />
     <a href="https://github.com/adessoTurkey-dotNET/AdsPush/issues">Report Bug or Request Feature</a>
     ·
@@ -28,6 +29,15 @@
     <a href="https://www.linkedin.com/in/anıl-dursun-şenel">Contect Me Via Linkedin</a>
   </p>
 </div>
+
+# Table Of Content
+
+1. [Features](#features)
+2. [Get It Started](#get-it-started)
+3. [Configuration](#configuration)
+   1. [Microsoft Dependency Injection](#microsoft-dependency-injection)
+   2. [Using Sender Instance](#using-sender-instance)
+4. [Sending notifications](#sending-notifications)
 
 # Features
 1. Abstraction sender works with APNS & FCM
