@@ -1,5 +1,5 @@
 <!-- PROJECT SHIELDS -->
-<div style="text-align: center">
+<div align="center" style="text-align: center">
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
