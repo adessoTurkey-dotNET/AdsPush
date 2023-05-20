@@ -12,7 +12,7 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div style="text-align: center" >
+<div align="center" style="text-align: center" >
 <img src="https://github.com/adessoTurkey-dotNET/AdsPush/blob/main/logo.png" alt="Logo" width="200" height="200">
   
 
