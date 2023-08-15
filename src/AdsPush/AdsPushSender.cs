@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 using AdsPush.Abstraction;
 using AdsPush.APNS;
 using AdsPush.Firebase;
+using AdsPush.Vapid;
 
 namespace AdsPush
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class AdsPushSender : IAdsPushSender
     {
@@ -16,9 +17,10 @@ namespace AdsPush
         private readonly IAdsPushConfigurationProvider _adsPushConfigurationProvider;
         private readonly IFirebasePushNotificationSenderFactory _firebasePushNotificationSenderFactory;
         private readonly IApplePushNotificationSenderFactory _applePushNotificationSenderFactory;
+        private readonly IVapidPushNotificationSenderFactory _vapidPushNotificationSenderFactory;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="adsPushConfigurationProvider"></param>
@@ -28,12 +30,14 @@ namespace AdsPush
             string appName,
             IAdsPushConfigurationProvider adsPushConfigurationProvider,
             IFirebasePushNotificationSenderFactory firebasePushNotificationSenderFactory,
-            IApplePushNotificationSenderFactory applePushNotificationSenderFactory)
+            IApplePushNotificationSenderFactory applePushNotificationSenderFactory,
+            IVapidPushNotificationSenderFactory vapidPushNotificationSenderFactory)
         {
             this._appName = appName;
             this._adsPushConfigurationProvider = adsPushConfigurationProvider;
             this._firebasePushNotificationSenderFactory = firebasePushNotificationSenderFactory;
             this._applePushNotificationSenderFactory = applePushNotificationSenderFactory;
+            this._vapidPushNotificationSenderFactory = vapidPushNotificationSenderFactory;
         }
 
 

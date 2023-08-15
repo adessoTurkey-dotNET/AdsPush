@@ -1,8 +1,8 @@
 using AdsPush.Abstraction.Settings;
-using AdsPush.Vapid.Settings;
 
 namespace AdsPush.Vapid
 {
+
     public interface IVapidPushNotificationSenderFactory
     {
         IVapidPushNotificationSender GetSender(

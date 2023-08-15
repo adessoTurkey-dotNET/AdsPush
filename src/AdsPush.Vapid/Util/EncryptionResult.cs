@@ -2,7 +2,7 @@
 {
     // @LogicSoftware
     // Originally From: https://github.com/LogicSoftware/WebPushEncryption/blob/master/src/EncryptionResult.cs
-    public class EncryptionResult
+    internal class EncryptionResult
     {
         public byte[] PublicKey { get; set; }
         public byte[] Payload { get; set; }
