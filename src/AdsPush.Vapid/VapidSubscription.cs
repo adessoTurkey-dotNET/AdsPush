@@ -34,9 +34,9 @@ namespace AdsPush.Vapid
             string subscriptionJson)
         {
             var jsonObject = JObject.Parse(subscriptionJson);
-            var endpoint = jsonObject["endpoint"]?.ToString();
-            var p256dh = jsonObject["keys.p256dh"]?.ToString();
-            var auth = jsonObject["keys.auth"]?.ToString();
+            var endpoint = jsonObject.SelectToken("endpoint")?.ToString();
+            var p256dh = jsonObject.SelectToken("keys.p256dh")?.ToString();
+            var auth = jsonObject.SelectToken("keys.auth")?.ToString();
             return new VapidSubscription(
                 endpoint,
                 p256dh,
@@ -61,9 +61,22 @@ namespace AdsPush.Vapid
             string p256dh,
             string auth)
         {
-            Endpoint = endpoint;
-            P256dh = p256dh;
-            Auth = auth;
+            this.Endpoint = endpoint;
+            this.P256dh = p256dh;
+            this.Auth = auth;
+        }
+
+        public string ToAdsPushToken()
+        {
+            return new JObject()
+            {
+                ["endpoint"] = this.Endpoint,
+                ["keys"] = new JObject()
+                {
+                    ["auth"] = this.Auth,
+                    ["p256dh"] = this.P256dh
+                }
+            }.ToString();
         }
 
         /// <summary>

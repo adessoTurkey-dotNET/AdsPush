@@ -101,6 +101,23 @@ namespace AdsPush
                             cancellationToken);
 
                     break;
+                case AdsPushProvider.VapidWebPush:
+                    if (settings.Vapid is null)
+                    {
+                        throw new AdsPushException(
+                            $"Settings are not configured for target platform {target}. Configure VAPID to be able to proceed.",
+                            AdsPushErrorType.InvalidAuthConfiguration,
+                            null);
+                    }
+
+                    await this._vapidPushNotificationSenderFactory
+                        .GetSender(this._appName, settings.Vapid)
+                        .SendAsync(
+                            pushToken,
+                            payload,
+                            cancellationToken);
+
+                    break;
                 default:
                     throw new NotSupportedException($"Target {target} is not supported by Framework");
             }
@@ -109,7 +126,7 @@ namespace AdsPush
         /// <inheritdoc />
         public IApplePushNotificationSender GetApnsSender()
         {
-            return _applePushNotificationSenderFactory.GetSender(this._appName);
+            return this._applePushNotificationSenderFactory.GetSender(this._appName);
         }
 
         /// <inheritdoc />

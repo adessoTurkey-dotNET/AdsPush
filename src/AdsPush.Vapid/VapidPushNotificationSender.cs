@@ -68,7 +68,7 @@ namespace AdsPush.Vapid
         {
             var subscription = VapidSubscription.FromSubscriptionJson(subscriptionJson);
             var vapidRequest = payload.CreateRequest();
-            var jsonPayload = JsonConvert.SerializeObject(vapidRequest);
+            var jsonPayload = JsonConvert.SerializeObject(vapidRequest, this._jsonSerializerSettings);
             var result = await this.SendBaseAsync(
                 subscription,
                 jsonPayload,
