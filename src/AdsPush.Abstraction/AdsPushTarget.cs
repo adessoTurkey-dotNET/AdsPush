@@ -13,5 +13,9 @@ namespace AdsPush.Abstraction
         /// Android
         /// </summary>
         Android,
+        /// <summary>
+        /// Mobile & PC Browsers, progressive web application (PWA)
+        /// </summary>
+        BrowserAndPwa
     }
 }
