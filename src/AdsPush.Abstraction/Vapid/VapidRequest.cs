@@ -47,12 +47,17 @@ namespace AdsPush.Abstraction.Vapid
         /// <summary>
         /// Time to live for the notification, in seconds. Defines how long a push message is retained if the user's device is offline. If not delivered in this time, the message will be dropped.
         /// </summary>
-        public int? TTL { get; set; }
+        public long? TTL { get; set; }
 
         /// <summary>
         /// Indicates whether the notification requires user interaction.
         /// </summary>
         public bool RequireInteraction { get; set; }
+
+        /// <summary>
+        /// Set the notification background or not.
+        /// </summary>
+        public bool Silent { get; set; }
 
         /// <summary>
         /// Pattern for the vibration (if supported).

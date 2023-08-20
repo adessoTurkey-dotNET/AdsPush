@@ -134,5 +134,11 @@ namespace AdsPush
         {
             return this._firebasePushNotificationSenderFactory.GetSender(this._appName);
         }
+
+        /// <inheritdoc />
+        public IVapidPushNotificationSender GetVapidSender()
+        {
+            return this._vapidPushNotificationSenderFactory.GetSender(this._appName);
+        }
     }
 }

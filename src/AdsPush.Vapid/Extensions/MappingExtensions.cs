@@ -54,6 +54,8 @@ namespace AdsPush.Vapid.Extensions
                 Tag = payload.GroupId,
                 Sound = payload.Sound,
                 Data = payload.Parameters.ToDictionary(x=>x.Key, x=>x.Value.ToString()),
+                Silent = payload.PushType is AdsPushType.Background,
+                TTL = (long?)payload.Ttl?.TotalSeconds
             };
         }
     }

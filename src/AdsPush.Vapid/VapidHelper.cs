@@ -1,11 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using AdsPush.Vapid.Util;
+using Org.BouncyCastle.Crypto.Parameters;
 
 namespace AdsPush.Vapid
 {
     public static class VapidHelper
     {
+        /// <summary>
+        ///     Generate vapid keys
+        /// </summary>
+        public static VapidKeyGenerationResult GenerateVapidKeys()
+        {
+            var keys = ECKeyHelper.GenerateKeys();
+            var publicKey = ((ECPublicKeyParameters) keys.Public).Q.GetEncoded(false);
+            var privateKey = ((ECPrivateKeyParameters) keys.Private).D.ToByteArrayUnsigned();
+
+            return new VapidKeyGenerationResult(
+                UrlBase64.Encode(publicKey),
+                UrlBase64.Encode(ByteArrayPadLeft(privateKey, 32)));
+        }
+
         /// <summary>
         ///     This method takes the required VAPID parameters and returns the required
         ///     header to be added to a Web Push Protocol Request.

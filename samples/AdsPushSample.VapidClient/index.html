@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <title>AdsPush Vapid Client Test</title>
+
+</head>
+<body class="bg-dark" data-bs-theme="dark">
+<div class="container my-5">
+  <h1 class="mb-4">AdsPush Sample App</h1>
+  <button id="subscribeButton" class="btn btn-primary mb-3">Abone Ol</button>
+  <div class="mb-3">
+    <label for="endpoint" class="form-label">Endpoint:</label>
+    <div class="input-group">
+      <textarea id="endpoint" rows="3" readonly class="form-control"></textarea>
+      <button class="btn btn-outline-primary" onclick="copyContent('endpoint')">Kopyala</button>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="p256dh" class="form-label">p256dh:</label>
+    <div class="input-group">
+      <textarea id="p256dh" rows="3" readonly class="form-control"></textarea>
+      <button class="btn btn-outline-primary" onclick="copyContent('p256dh')">Kopyala</button>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="auth" class="form-label">auth:</label>
+    <div class="input-group">
+      <textarea id="auth" rows="3" readonly class="form-control"></textarea>
+      <button class="btn btn-outline-primary" onclick="copyContent('auth')">Kopyala</button>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelector("#subscribeButton").addEventListener("click", async () => {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        alert("Permission denied")
+        return;
+      }
+      const subscription = await subscribeUserToPush();
+      sendSubscriptionToServer(subscription);
+    } catch (error) {
+      alert("Permission was not granted or subscription failed")
+      console.error('Permission was not granted or subscription failed:', error);
+    }
+  });
+
+  async function subscribeUserToPush() {
+    const registration = await navigator.serviceWorker.register('service-worker.js');
+    const subscribeOptions = {
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array('BF59A9jkMtVqs0Gzef1o6xhcB8SBHjhufCLikJhtNY9YGl_Zm2PwLMYbQs_RvD3T0yUFUlcFBt6nqSVOdoU05IM')
+    };
+    return registration.pushManager.subscribe(subscribeOptions);
+  }
+
+  function sendSubscriptionToServer(subscription) {
+    console.log(JSON.stringify(subscription));
+    let subObj = JSON.parse(JSON.stringify(subscription))
+    document.querySelector("#endpoint").value = subObj.endpoint;
+    document.querySelector("#p256dh").value = subObj.keys.p256dh;
+    document.querySelector("#auth").value = subObj.keys.auth;
+    // Send subObj to your server here.
+  }
+
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+  }
+
+  function copyContent(elementId) {
+    const element = document.getElementById(elementId);
+    element.select();
+    document.execCommand("copy");
+  }
+
+</script>
+</body>
+</html>
