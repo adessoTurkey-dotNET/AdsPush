@@ -17,6 +17,7 @@ namespace AdsPush.Vapid
 {
     public class VapidPushNotificationSender : IVapidPushNotificationSender
     {
+        private const long DefaultTtl = 43200;
         private readonly HttpClient _client;
         private readonly AdsPushVapidSettings _adsPushVapidSettings;
 
@@ -145,7 +146,7 @@ namespace AdsPush.Vapid
                 return ttlLong;
             }
 
-            return this._adsPushVapidSettings.TTL.GetValueOrDefault(43200);
+            return DefaultTtl;
         }
 
         private bool ValidateSubscription(

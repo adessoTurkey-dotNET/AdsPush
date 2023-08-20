@@ -13,7 +13,8 @@ namespace AdsPush.Vapid.Util
     {
         private readonly ECPrivateKeyParameters _privateKey;
 
-        public JwsSigner(ECPrivateKeyParameters privateKey)
+        public JwsSigner(
+            ECPrivateKeyParameters privateKey)
         {
             this._privateKey = privateKey;
         }
@@ -24,7 +25,9 @@ namespace AdsPush.Vapid.Util
         /// <param name="header"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public string GenerateSignature(Dictionary<string, object> header, Dictionary<string, object> payload)
+        public string GenerateSignature(
+            Dictionary<string, object> header,
+            Dictionary<string, object> payload)
         {
             var securedInput = SecureInput(header, payload);
             var message = Encoding.UTF8.GetBytes(securedInput);
@@ -51,7 +54,9 @@ namespace AdsPush.Vapid.Util
             return $"{securedInput}.{signature}";
         }
 
-        private static string SecureInput(Dictionary<string, object> header, Dictionary<string, object> payload)
+        private static string SecureInput(
+            Dictionary<string, object> header,
+            Dictionary<string, object> payload)
         {
             var encodeHeader = UrlBase64.Encode(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(header)));
             var encodePayload = UrlBase64.Encode(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(payload)));
@@ -59,7 +64,9 @@ namespace AdsPush.Vapid.Util
             return $"{encodeHeader}.{encodePayload}";
         }
 
-        private static byte[] ByteArrayPadLeft(byte[] src, int size)
+        private static byte[] ByteArrayPadLeft(
+            byte[] src,
+            int size)
         {
             var dst = new byte[size];
             var startAt = dst.Length - src.Length;
@@ -67,7 +74,8 @@ namespace AdsPush.Vapid.Util
             return dst;
         }
 
-        private static byte[] Sha256Hash(byte[] message)
+        private static byte[] Sha256Hash(
+            byte[] message)
         {
             var sha256Digest = new Sha256Digest();
             sha256Digest.BlockUpdate(message, 0, message.Length);

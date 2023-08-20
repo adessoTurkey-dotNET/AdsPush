@@ -9,7 +9,8 @@ namespace AdsPush.Vapid.Util
         /// </summary>
         /// <param name="base64"></param>
         /// <returns></returns>
-        public static byte[] Decode(string base64)
+        public static byte[] Decode(
+            string base64)
         {
             base64 = base64.Replace('-', '+').Replace('_', '/');
 
@@ -26,7 +27,8 @@ namespace AdsPush.Vapid.Util
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string Encode(byte[] data)
+        public static string Encode(
+            byte[] data)
         {
             return Convert.ToBase64String(data).Replace('+', '-').Replace('/', '_').TrimEnd('=');
         }

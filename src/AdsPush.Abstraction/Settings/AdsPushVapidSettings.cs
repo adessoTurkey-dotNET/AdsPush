@@ -16,10 +16,5 @@ namespace AdsPush.Abstraction.Settings
         /// Gets or sets the subject for VAPID authentication. This should be a mailto or a URL.
         /// </summary>
         public string Subject { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Time To Live (TTL) for the notification. This defines how long a push message is retained if the user's device is offline. If not delivered in this time, the message will be dropped.
-        /// </summary>
-        public long? TTL { get; set; }
     }
 }

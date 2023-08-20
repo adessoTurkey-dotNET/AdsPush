@@ -8,7 +8,6 @@ namespace AdsPush.Vapid.Extensions
 {
     public static class BuilderExtensions
     {
-
         /// <summary>
         /// Configures <see cref="IVapidPushNotificationSenderFactory"/> to be able to creates <see cref="IVapidPushNotificationSender"/> instance.
         /// </summary>

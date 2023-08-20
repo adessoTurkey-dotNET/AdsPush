@@ -6,7 +6,7 @@ using AdsPush.Vapid.Settings;
 
 namespace AdsPush.Vapid
 {
-    public class VapidPushNotificationSenderFactory:  IVapidPushNotificationSenderFactory
+    public class VapidPushNotificationSenderFactory : IVapidPushNotificationSenderFactory
     {
         public VapidPushNotificationSenderFactory(
             VapidSettingsSection vapidSettingsSection,

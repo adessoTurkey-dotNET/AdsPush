@@ -1,37 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>AdsPush.Vapid</PackageId>
+    <Authors>Anil Dursun SENEL</Authors>
+    <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;VAPID;WebPush;push notification</PackageTags>
+    <Description>
+      AdsPush is the server-side push notification library that fully supports APNS(Apple Push Notification Service), FCM (Firebase Cloud Messaging) and VAPID WebPush features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
+    </Description>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/adessoTurkey-dotNET/AdsPush</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/adessoTurkey-dotNET/AdsPush</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Copyright (c) 2023, Anıl Dursun ŞENEL</Copyright>
+    <PackageReadmeFile>README-NUGET.md</PackageReadmeFile>
+    <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj"/>
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <None Include="..\..\LICENSE">
-            <Pack>true</Pack>
-            <PackagePath>/</PackagePath>
-            <Link>LICENSE</Link>
-        </None>
-        <None Include="..\..\logo.png">
-            <Pack>true</Pack>
-            <PackagePath>/</PackagePath>
-            <Link>logo.png</Link>
-        </None>
-        <None Include="..\..\README-NUGET.md">
-            <Pack>true</Pack>
-            <PackagePath>/</PackagePath>
-            <Link>README-NUGET.md</Link>
-        </None>
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>LICENSE</Link>
+    </None>
+    <None Include="..\..\logo.png">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>logo.png</Link>
+    </None>
+    <None Include="..\..\README-NUGET.md">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>README-NUGET.md</Link>
+    </None>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-        <PackageReference Include="Portable.BouncyCastle" Version="1.8.10"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.10" />
+  </ItemGroup>
 
 
 </Project>

@@ -13,8 +13,8 @@ namespace AdsPush.Vapid
         public static VapidKeyGenerationResult GenerateVapidKeys()
         {
             var keys = ECKeyHelper.GenerateKeys();
-            var publicKey = ((ECPublicKeyParameters) keys.Public).Q.GetEncoded(false);
-            var privateKey = ((ECPrivateKeyParameters) keys.Private).D.ToByteArrayUnsigned();
+            var publicKey = ((ECPublicKeyParameters)keys.Public).Q.GetEncoded(false);
+            var privateKey = ((ECPrivateKeyParameters)keys.Private).D.ToByteArrayUnsigned();
 
             return new VapidKeyGenerationResult(
                 UrlBase64.Encode(publicKey),
