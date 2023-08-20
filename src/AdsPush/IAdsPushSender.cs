@@ -1,8 +1,10 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AdsPush.Abstraction;
 using AdsPush.APNS;
 using AdsPush.Firebase;
+using AdsPush.Vapid;
 
 namespace AdsPush
 {
@@ -27,15 +29,21 @@ namespace AdsPush
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Use to access whole platform specific options for APNS. 
+        /// Use to access whole platform specific options for APNS.
         /// </summary>
         /// <returns></returns>
         IApplePushNotificationSender GetApnsSender();
-        
+
         /// <summary>
-        /// Use to access whole platform specific options for Firebase. 
+        /// Use to access whole platform specific options for Firebase.
         /// </summary>
         /// <returns></returns>
         IFirebasePushNotificationSender GetFirebaseSender();
+
+        /// <summary>
+        /// Use to access whole platform specific options for Vapid.
+        /// </summary>
+        /// <returns></returns>
+        IVapidPushNotificationSender GetVapidSender();
     }
 }

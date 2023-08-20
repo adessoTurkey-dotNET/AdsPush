@@ -9,7 +9,7 @@ namespace AdsPush.Abstraction
     public class AdsPushBasicSendPayload
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AdsPushBasicSendPayload()
         {
@@ -20,7 +20,7 @@ namespace AdsPush.Abstraction
         /// Unique notification id.
         /// </summary>
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        
+
         /// <summary>
         /// Basic notification tyoe.
         /// <see cref="AdsPushType"/>
@@ -43,10 +43,10 @@ namespace AdsPush.Abstraction
         /// Sound file name for notification.
         /// </summary>
         public string Sound { get; set; }
-        
+
         /// <summary>
         /// Related group id to be able to group notification.
-        /// Ios thread id 
+        /// Ios thread id
         /// </summary>
         public string GroupId { get; set; }
 
@@ -60,6 +60,11 @@ namespace AdsPush.Abstraction
         /// <see cref="Dictionary{TKey,TValue}"/>
         /// </summary>
         public Dictionary<string, object> Parameters { get; set; }
-        
+
+        /// <summary>
+        /// Time to leve for notification.
+        /// Pass null for platform default.
+        /// </summary>
+        public TimeSpan? Ttl { get; set; }
     }
 }

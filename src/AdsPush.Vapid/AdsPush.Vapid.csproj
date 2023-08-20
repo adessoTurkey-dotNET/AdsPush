@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>AdsPush.Firebase</PackageId>
+    <PackageId>AdsPush.Vapid</PackageId>
     <Authors>Anil Dursun SENEL</Authors>
-    <PackageTags>push;APNS;service-side-push-library;Firebase;Apple;FCM;VAPID;WebPush;push notification</PackageTags>
+    <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;VAPID;WebPush;push notification</PackageTags>
     <Description>
       AdsPush is the server-side push notification library that fully supports APNS(Apple Push Notification Service), FCM (Firebase Cloud Messaging) and VAPID WebPush features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
     </Description>
@@ -18,16 +18,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
-    <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\"/>
-    <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
-    <PackageReference Include="FirebaseAdmin" Version="2.3.0"/>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1"/>
-    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
+    <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdsPush.Abstraction\AdsPush.Abstraction.csproj"/>
+    <None Include="..\..\LICENSE">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>LICENSE</Link>
+    </None>
+    <None Include="..\..\logo.png">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>logo.png</Link>
+    </None>
+    <None Include="..\..\README-NUGET.md">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>README-NUGET.md</Link>
+    </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.10" />
+  </ItemGroup>
+
 
 </Project>

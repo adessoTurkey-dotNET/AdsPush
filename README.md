@@ -19,7 +19,7 @@
 <h3 align="center">AdsPush</h3>
 
   <p style="text-align: center">
-<b>AdsPush</b> is the server-side push notification library that fully supports <b>APNS (Apple Push Notification Service)</b> and <b>FCM (Firebase Cloud Messaging)</b> features and works with the most common platforms. It offers good abstraction, is easy to use, and provides complete support for advanced use cases
+<b>AdsPush</b> is the server-side push notification library that fully supports <b>APNS (Apple Push Notification Service)</b>, <b>FCM (Firebase Cloud Messaging)</b> and <b>VAPID WebPush</b> features and works with the most common platforms. It offers good abstraction, is easy to use, and provides complete support for advanced use cases
 
  <br />
     <a href="https://github.com/adessoTurkey-dotNET/AdsPush/issues">Report Bug or Request Feature</a>
@@ -124,7 +124,8 @@ And put the following section in your in your `appsettings.[ENV].json`
     "MyApp": { 
       "TargetMappings": {
         "Ios": "Apns",
-        "Android": "FirebaseCloudMessaging"
+        "Android": "FirebaseCloudMessaging",
+        "BrowserAndPwa": "VapidWebPush"
       },
       "Apns": {
         "P8PrivateKey": "<p8 certificate string without any space and start and end tags>",
@@ -144,20 +145,26 @@ And put the following section in your in your `appsettings.[ENV].json`
         "AuthProviderX509CertUrl": "<auth_provider_x509_cert_url filed in service_account.json>",
         "TokenUri": "<client_x509_cert_url filed in service_account.json>",
         "ClientX509CertUrl": "<token_uri filed in service_account.json>"
+      },
+      "Vapid": {
+        "PublicKey": "<Generated public key as string>",
+        "PrivateKey": "<Generated private key as string>",
+        "Subject": "<Subjects that used in VAPID JWT.>"
       }
     }
   }
  ...
 }
 ```
+
 If you wish to use host/pod environment or any secret provider you can set the following environment variables.
 
 ```
-AdsPush__MyApp__Apns__AppBundleIdentifier=<App slug / bundle name>
-AdsPush__MyApp__Apns__EnvironmentType=<Apns Env one of Development or Production>
-AdsPush__MyApp__Apns__P8PrivateKey=<p8 certificate string without any space and start and end tags>
-AdsPush__MyApp__Apns__P8PrivateKeyId=<10 digit p8 certificate id. Usually a part of a downloadable certificate filename>
-AdsPush__MyApp__Apns__TeamId=<Apple 10 digit team id shown in Apple Developer Membership Page>
+AdsPush__MyApp__Apns__AppBundleIdentifier=<App slug or bundle name>
+AdsPush__MyApp__Apns__EnvironmentType=<APNs environment type; either 'Development' or 'Production'>
+AdsPush__MyApp__Apns__P8PrivateKey=<p8 certificate string without spaces and start/end tags>
+AdsPush__MyApp__Apns__P8PrivateKeyId=<10-digit p8 certificate id; often part of a downloadable certificate filename>
+AdsPush__MyApp__Apns__TeamId=<10-digit Apple team id shown on the Apple Developer Membership Page>
 AdsPush__MyApp__FirebaseCloudMessaging__AuthProviderX509CertUrl=<auth_provider_x509_cert_url filed in service_account.json>
 AdsPush__MyApp__FirebaseCloudMessaging__AuthUri=<auth_uri filed in service_account.json>
 AdsPush__MyApp__FirebaseCloudMessaging__ClientEmail=<client_email filed in service_account.json>
@@ -169,7 +176,11 @@ AdsPush__MyApp__FirebaseCloudMessaging__ProjectId=<project_id filed in service_a
 AdsPush__MyApp__FirebaseCloudMessaging__TokenUri=<client_x509_cert_url filed in service_account.json>
 AdsPush__MyApp__FirebaseCloudMessaging__Type=<type filed in service_account.json>
 AdsPush__MyApp__TargetMappings__Android=FirebaseCloudMessaging
+AdsPush__MyApp__TargetMappings__BrowserAndPwa=VapidWebPush
 AdsPush__MyApp__TargetMappings__Ios=Apns
+AdsPush__MyApp__Vapid__PrivateKey=<Generated private key as string>
+AdsPush__MyApp__Vapid__PublicKey=<Generated public key as string>
+AdsPush__MyApp__Vapid__Subject=<Subjects that used in VAPID JWT>
 
 ```
 
@@ -206,9 +217,15 @@ var firebaseSettings = new AdsPushFirebaseSettings()
     //put your configurations hare.
 };
 
+var vapidSettings = new AdsPushVapidSettings()
+{
+    //put your configurations hare.
+};
+
 var sender = builder
     .ConfigureApns(apnsSettings, null)
     .ConfigureFirebase(firebaseSettings, AdsPushTarget.Android)
+    .ConfigureVapid(vapidSettings, null)
     .BuildSender();
   
 ```
@@ -219,21 +236,43 @@ When you obtain `IAdsPushSender` instance by using one the methods shown above, 
 
 ```csharp
 
+
+var basicPayload = new AdsPushBasicSendPayload()
+{
+    Title = AdsPushText.CreateUsingString("test"),
+    Detail = AdsPushText.CreateUsingString("detail"),
+    Badge = 52,
+    Sound = "default",
+    Parameters = new Dictionary<string, object>()
+    {
+        {
+            "pushParam1", "value1"
+        },
+        {
+            "pushParam2", "value2"
+        },
+    }
+};
+    
+var apnDeviceToken = "15f6fdd0f34a7e0f46301a817536f0fb1b2ab05b09b3fae02beba2854a1a2a16";
+//var apnDeviceTokenVapid = "{"endpoint:"...", "keys": {"auth":"...","p256dh":"..."}}";
+
 await sender.BasicSendAsync(
     AdsPushTarget.Ios,
-    "79eb1b9e623bbca0d2b218f44a18d7b8ef59dac4da5baa9949c3e99a48eb259a",
-    new ()
-    {
-        Title = AdsPushText.CreateUsingString("test"),
-        Detail = AdsPushText.CreateUsingString("detail"),
-        Badge = 52,
-        Sound = "default",
-        Parameters = new Dictionary<string, object>()
-        {
-            {"pushParam1","value1"},
-            {"pushParam2","value2"},
-        }
-    });
+    apnDeviceToken,
+    basicPayload);
+
+//For VAPID WebPush with multi parametere
+string
+    endpoint = "https://fcm.googleapis.com/fcm/send/cIo6QJ4MMtQ:APA91bEGHCpZdHaUS7otb5_xU1zNWe6TAqria9phFm7M_9ZIiEyr0vXj3gRHbeIJMYvp2-SAVbgNrVvl7uBvU_VTLpIA0CLBcmqXuuEktGr0U4LVLvwWBibO68spJk7D-lr8R9zPyAXE",
+    p256dh = "BIjydse4Rij892SJN10xx1qbxDM6GrYXSfg7TGu90CVM1WmlTYzn_79psRqseyWdER969LGLjZmnXIhHPaKTyGE",
+    auth = "TkLGLzFeUU3C9SJJN6dLAA";
+
+var subscription = VapidSubscription.FromParameters(endpoint, p256dh, auth);
+await sender.BasicSendAsync(
+    AdsPushTarget.BrowserAndPwa,
+    subscription.ToAdsPushToken(),
+    basicPayload);
 
 ```
 
@@ -291,6 +330,34 @@ var firebaseResult = await sender
             ImageUrl = ""
         }
     });
+
+
+
+//Sample for VAPID WebPush
+var vapidResult = await sender
+    .GetVapidSender()
+    .SendAsync(
+        subscription,
+        new VapidRequest()
+        {
+            Title = "",
+            Badge = "",
+            Message = "",
+            Sound = "",
+            Icon = "",
+            Image = "",
+            Language = "",
+            Silent = false,
+            Tag = "",
+            ClickAction = "",
+            VibratePattern = "",
+            Data = new Dictionary<string, string>()
+            {
+                {"param1", "value1"}
+            }
+        });
+
+
 ```
 
 

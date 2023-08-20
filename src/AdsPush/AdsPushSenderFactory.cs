@@ -1,8 +1,8 @@
 using System.Collections.Concurrent;
 using AdsPush.Abstraction;
-using AdsPush.Abstraction.Settings;
 using AdsPush.APNS;
 using AdsPush.Firebase;
+using AdsPush.Vapid;
 
 namespace AdsPush
 {
@@ -15,25 +15,29 @@ namespace AdsPush
         private readonly IAdsPushConfigurationProvider _adsPushConfigurationProvider;
         private readonly IApplePushNotificationSenderFactory _applePushNotificationSenderFactory;
         private readonly IFirebasePushNotificationSenderFactory _firebasePushNotificationSenderFactory;
-       
+        private readonly IVapidPushNotificationSenderFactory _vapidPushNotificationSenderFactory;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="adsPushConfigurationProvider"></param>
         /// <param name="applePushNotificationSenderFactory"></param>
         /// <param name="firebasePushNotificationSenderFactory"></param>
+        /// <param name="vapidPushNotificationSenderFactory"></param>
         public AdsPushSenderFactory(
             IAdsPushConfigurationProvider adsPushConfigurationProvider,
             IApplePushNotificationSenderFactory applePushNotificationSenderFactory,
-            IFirebasePushNotificationSenderFactory firebasePushNotificationSenderFactory)
+            IFirebasePushNotificationSenderFactory firebasePushNotificationSenderFactory,
+            IVapidPushNotificationSenderFactory vapidPushNotificationSenderFactory)
         {
             this._senders = new ConcurrentDictionary<string, IAdsPushSender>();
             this._adsPushConfigurationProvider = adsPushConfigurationProvider;
             this._applePushNotificationSenderFactory = applePushNotificationSenderFactory;
             this._firebasePushNotificationSenderFactory = firebasePushNotificationSenderFactory;
+            this._vapidPushNotificationSenderFactory = vapidPushNotificationSenderFactory;
         }
 
-        
+
         /// <inheritdoc />
         public IAdsPushSender GetSender(
             string appName)
@@ -43,7 +47,8 @@ namespace AdsPush
                 new AdsPushSender(
                     appName, this._adsPushConfigurationProvider,
                     this._firebasePushNotificationSenderFactory,
-                    this._applePushNotificationSenderFactory));
+                    this._applePushNotificationSenderFactory,
+                    this._vapidPushNotificationSenderFactory));
         }
     }
 }

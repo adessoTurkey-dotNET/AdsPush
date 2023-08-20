@@ -6,6 +6,8 @@ using AdsPush;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.APNS;
 using AdsPush.Abstraction.Settings;
+using AdsPush.Abstraction.Vapid;
+using AdsPush.Vapid;
 using FirebaseAdmin.Messaging;
 
 var builder = new AdsPushSenderBuilder();
@@ -19,32 +21,55 @@ var firebaseSettings = new AdsPushFirebaseSettings()
     //put your configurations hare.
 };
 
+
+var vapidSettings = new AdsPushVapidSettings()
+{
+    //put your configurations hare.
+};
+
 var sender = builder
-    .ConfigureApns(apnsSettings, null)
+    .ConfigureVapid(vapidSettings)
+    .ConfigureApns(apnsSettings)
     .ConfigureFirebase(firebaseSettings, AdsPushTarget.Android)
     .BuildSender();
 
-var apnDeviceToken = "15f6fdd0f34a7e0f46301a817536f0fb1b2ab05b09b3fae02beba2854a1a2a16";
 
+var basicPayload = new AdsPushBasicSendPayload()
+{
+    Title = AdsPushText.CreateUsingString("test"),
+    Detail = AdsPushText.CreateUsingString("detail"),
+    Badge = 52,
+    Sound = "default",
+    Parameters = new Dictionary<string, object>()
+    {
+        {
+            "pushParam1", "value1"
+        },
+        {
+            "pushParam2", "value2"
+        },
+    }
+};
+
+var apnDeviceToken = "15f6fdd0f34a7e0f46301a817536f0fb1b2ab05b09b3fae02beba2854a1a2a16";
+//var apnDeviceTokenVapid = "{"endpoint:"...", "keys": {"auth":"...","p256dh":"..."}}";
 await sender.BasicSendAsync(
     AdsPushTarget.Ios,
     apnDeviceToken,
-    new()
-    {
-        Title = AdsPushText.CreateUsingString("test"),
-        Detail = AdsPushText.CreateUsingString("detail"),
-        Badge = 52,
-        Sound = "default",
-        Parameters = new Dictionary<string, object>()
-        {
-            {
-                "pushParam1", "value1"
-            },
-            {
-                "pushParam2", "value2"
-            },
-        }
-    });
+    basicPayload);
+
+//For VAPID WebPush
+string
+    endpoint = "https://fcm.googleapis.com/fcm/send/cIo6QJ4MMtQ:APA91bEGHCpZdHaUS7otb5_xU1zNWe6TAqria9phFm7M_9ZIiEyr0vXj3gRHbeIJMYvp2-SAVbgNrVvl7uBvU_VTLpIA0CLBcmqXuuEktGr0U4LVLvwWBibO68spJk7D-lr8R9zPyAXE",
+    p256dh = "BIjydse4Rij892SJN10xx1qbxDM6GrYXSfg7TGu90CVM1WmlTYzn_79psRqseyWdER969LGLjZmnXIhHPaKTyGE",
+    auth = "TkLGLzFeUU3C9SJJN6dLAA";
+
+var subscription = VapidSubscription.FromParameters(endpoint, p256dh, auth);
+await sender.BasicSendAsync(
+    AdsPushTarget.BrowserAndPwa,
+    subscription.ToAdsPushToken(),
+    basicPayload);
+
 
 //for whole platform options
 //sample for Apns
@@ -102,3 +127,29 @@ var firebaseResult = await sender
             ImageUrl = ""
         }
     });
+
+//Sample for VAPID WebPush
+var vapidResult = await sender
+    .GetVapidSender()
+    .SendAsync(
+        subscription,
+        new VapidRequest()
+        {
+            Title = "",
+            Badge = "",
+            Message = "",
+            Sound = "",
+            Icon = "",
+            Image = "",
+            Language = "",
+            Silent = false,
+            Tag = "",
+            ClickAction = "",
+            VibratePattern = "",
+            Data = new Dictionary<string, string>()
+            {
+                {
+                    "param1", "value1"
+                }
+            }
+        });

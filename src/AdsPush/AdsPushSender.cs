@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 using AdsPush.Abstraction;
 using AdsPush.APNS;
 using AdsPush.Firebase;
+using AdsPush.Vapid;
 
 namespace AdsPush
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class AdsPushSender : IAdsPushSender
     {
@@ -16,9 +17,10 @@ namespace AdsPush
         private readonly IAdsPushConfigurationProvider _adsPushConfigurationProvider;
         private readonly IFirebasePushNotificationSenderFactory _firebasePushNotificationSenderFactory;
         private readonly IApplePushNotificationSenderFactory _applePushNotificationSenderFactory;
+        private readonly IVapidPushNotificationSenderFactory _vapidPushNotificationSenderFactory;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="adsPushConfigurationProvider"></param>
@@ -28,12 +30,14 @@ namespace AdsPush
             string appName,
             IAdsPushConfigurationProvider adsPushConfigurationProvider,
             IFirebasePushNotificationSenderFactory firebasePushNotificationSenderFactory,
-            IApplePushNotificationSenderFactory applePushNotificationSenderFactory)
+            IApplePushNotificationSenderFactory applePushNotificationSenderFactory,
+            IVapidPushNotificationSenderFactory vapidPushNotificationSenderFactory)
         {
             this._appName = appName;
             this._adsPushConfigurationProvider = adsPushConfigurationProvider;
             this._firebasePushNotificationSenderFactory = firebasePushNotificationSenderFactory;
             this._applePushNotificationSenderFactory = applePushNotificationSenderFactory;
+            this._vapidPushNotificationSenderFactory = vapidPushNotificationSenderFactory;
         }
 
 
@@ -97,6 +101,23 @@ namespace AdsPush
                             cancellationToken);
 
                     break;
+                case AdsPushProvider.VapidWebPush:
+                    if (settings.Vapid is null)
+                    {
+                        throw new AdsPushException(
+                            $"Settings are not configured for target platform {target}. Configure VAPID to be able to proceed.",
+                            AdsPushErrorType.InvalidAuthConfiguration,
+                            null);
+                    }
+
+                    await this._vapidPushNotificationSenderFactory
+                        .GetSender(this._appName, settings.Vapid)
+                        .SendAsync(
+                            pushToken,
+                            payload,
+                            cancellationToken);
+
+                    break;
                 default:
                     throw new NotSupportedException($"Target {target} is not supported by Framework");
             }
@@ -105,13 +126,19 @@ namespace AdsPush
         /// <inheritdoc />
         public IApplePushNotificationSender GetApnsSender()
         {
-            return _applePushNotificationSenderFactory.GetSender(this._appName);
+            return this._applePushNotificationSenderFactory.GetSender(this._appName);
         }
 
         /// <inheritdoc />
         public IFirebasePushNotificationSender GetFirebaseSender()
         {
             return this._firebasePushNotificationSenderFactory.GetSender(this._appName);
+        }
+
+        /// <inheritdoc />
+        public IVapidPushNotificationSender GetVapidSender()
+        {
+            return this._vapidPushNotificationSenderFactory.GetSender(this._appName);
         }
     }
 }

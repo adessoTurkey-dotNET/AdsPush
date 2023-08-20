@@ -5,9 +5,9 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageId>AdsPush</PackageId>
         <Authors>Anil Dursun SENEL</Authors>
-        <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;ios-push;android-push;notofication;push-notification;push notification</PackageTags>
+        <PackageTags>push;APNS;server-side-push-library;Firebase;Apple;FCM;ios-push;android-push;notofication;VAPID;WebPush;push-notification;push notification</PackageTags>
         <Description>
-          AdsPush is the server-side push notification library that fully supports APNS(Apple Push Notification Service) and FCM (Firebase Cloud Messaging) features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
+          AdsPush is the server-side push notification library that fully supports APNS(Apple Push Notification Service), FCM (Firebase Cloud Messaging) and VAPID WebPush features and works with the the most common .NET platorms. It puts togetter good abtraction, easy using and full support for advanced use cases.
         </Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageIcon>logo.png</PackageIcon>
@@ -25,6 +25,7 @@
         <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
         <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj" />
         <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj" />
+        <ProjectReference Include="..\AdsPush.Vapid\AdsPush.Vapid.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -12,6 +12,11 @@ namespace AdsPush.Abstraction
         /// <summary>
         /// FCM - Firebase Cloud Messaging.
         /// </summary>
-        Firebase
+        Firebase,
+
+        /// <summary>
+        /// Web Push
+        /// </summary>
+        VapidWebPush,
     }
 }

@@ -5,6 +5,7 @@ using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using FirebaseAdmin.Messaging;
 using AdsPush.Abstraction;
+using AdsPush.Abstraction.APNS;
 
 namespace AdsPush.Firebase.Extensions
 {
@@ -48,15 +49,21 @@ namespace AdsPush.Firebase.Extensions
                                 LocKey = payload.Detail.LocalizationKey,
                                 LocArgs = payload.Detail.LocalizationArgs,
                             }
-                        },
-                        Headers = new Dictionary<string, string>()
+                        }
+                    };
+                    var headers = new Dictionary<string, string>()
+                    {
                         {
-                            {
-                                "apns-push-type", payload.PushType.ToString()
-                            }
-                        },
+                            "apns-push-type", payload.PushType.ToString()
+                        }
                     };
 
+                    if (payload.Ttl.HasValue)
+                    {
+                        headers.Add("apns-expiration", APNSExpiration.FromTimeSpan(payload.Ttl.Value).ApnsExpirationValue.ToString());
+                    }
+
+                    message.Apns.Headers = headers;
                     break;
                 case AdsPushTarget.Android:
                     message.Android = new AndroidConfig()
@@ -75,6 +82,7 @@ namespace AdsPush.Firebase.Extensions
                             Sound = payload.Sound,
                         },
                         Data = payload.Parameters.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                        TimeToLive = payload.Ttl
                     };
 
                     break;
