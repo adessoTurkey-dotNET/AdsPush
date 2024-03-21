@@ -6,6 +6,7 @@ using AdsPush.APNS.Extensions;
 using AdsPush.Firebase.Extensions;
 using AdsPush.Vapid.Extensions;
 using Microsoft.Extensions.Configuration;
+using AdsPush.HMS.Extensions;
 
 namespace AdsPush.Extensions
 {
@@ -28,6 +29,7 @@ namespace AdsPush.Extensions
             services.AddFirebaseCloudMessagingServiceFactory();
             services.AddAppleNotificationServiceFactory();
             services.AddVapidNotificationServiceFactory();
+            services.AddHuaweiNotificationServiceFactory();
             services.AddSingleton<IAdsPushSenderFactory, AdsPushSenderFactory>();
             services.AddSingleton<IAdsPushConfigurationProvider, DefaultAdsPushConfigurationProvider>();
             services.Configure(settings);
@@ -48,6 +50,7 @@ namespace AdsPush.Extensions
             services.AddFirebaseCloudMessagingServiceFactory();
             services.AddAppleNotificationServiceFactory();
             services.AddVapidNotificationServiceFactory();
+            services.AddHuaweiNotificationServiceFactory();
             services.AddSingleton<IAdsPushSenderFactory, AdsPushSenderFactory>();
             services.AddSingleton<IAdsPushConfigurationProvider, DefaultAdsPushConfigurationProvider>();
             services.Configure<AdsPushSettings>(configuration.GetSection("AdsPush"));
@@ -67,6 +70,7 @@ namespace AdsPush.Extensions
             services.AddFirebaseCloudMessagingServiceFactory();
             services.AddAppleNotificationServiceFactory();
             services.AddVapidNotificationServiceFactory();
+            services.AddHuaweiNotificationServiceFactory();
             services.AddSingleton<IAdsPushSenderFactory, AdsPushSenderFactory>();
             services.AddSingleton<IAdsPushConfigurationProvider, TProvider>();
 

@@ -66,5 +66,10 @@ namespace AdsPush.Abstraction
         /// Pass null for platform default.
         /// </summary>
         public TimeSpan? Ttl { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PushToken { get; set; }
     }
 }

@@ -25,6 +25,7 @@
         <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
         <ProjectReference Include="..\AdsPush.APNS\AdsPush.APNS.csproj" />
         <ProjectReference Include="..\AdsPush.Firebase\AdsPush.Firebase.csproj" />
+        <ProjectReference Include="..\AdsPush.HMS\AdsPush.HMS.csproj" />
         <ProjectReference Include="..\AdsPush.Vapid\AdsPush.Vapid.csproj" />
     </ItemGroup>
 

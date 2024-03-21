@@ -96,5 +96,6 @@ namespace AdsPush.APNS.Extensions
                         throw new ArgumentOutOfRangeException();
                 }
         }
+
     }
 }

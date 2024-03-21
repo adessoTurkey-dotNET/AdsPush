@@ -20,9 +20,9 @@
 
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
-    <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\"/>
-    <None Include="..\..\logo.png" Pack="true" PackagePath="\"/>
-    <PackageReference Include="FirebaseAdmin" Version="2.3.0"/>
+    <None Include="..\..\README-NUGET.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
+    <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
   </ItemGroup>
 
 

@@ -18,5 +18,10 @@ namespace AdsPush.Abstraction
         /// Web Push
         /// </summary>
         VapidWebPush,
+
+        /// <summary>
+        /// HMS - Huawei Messaging System
+        /// </summary>
+        HMS
     }
 }

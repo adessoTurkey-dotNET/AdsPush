@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AdsPush.Abstraction;
 using AdsPush.APNS;
 using AdsPush.Firebase;
+using AdsPush.HMS;
 using AdsPush.Vapid;
 
 namespace AdsPush
@@ -18,6 +19,7 @@ namespace AdsPush
         private readonly IFirebasePushNotificationSenderFactory _firebasePushNotificationSenderFactory;
         private readonly IApplePushNotificationSenderFactory _applePushNotificationSenderFactory;
         private readonly IVapidPushNotificationSenderFactory _vapidPushNotificationSenderFactory;
+        private readonly IHMSPushNotificationSenderFactory _hmsPushNotificationSenderFactory;
 
         /// <summary>
         ///
@@ -31,13 +33,15 @@ namespace AdsPush
             IAdsPushConfigurationProvider adsPushConfigurationProvider,
             IFirebasePushNotificationSenderFactory firebasePushNotificationSenderFactory,
             IApplePushNotificationSenderFactory applePushNotificationSenderFactory,
-            IVapidPushNotificationSenderFactory vapidPushNotificationSenderFactory)
+            IVapidPushNotificationSenderFactory vapidPushNotificationSenderFactory,
+            IHMSPushNotificationSenderFactory hmsPushNotificationSenderFactory)
         {
             this._appName = appName;
             this._adsPushConfigurationProvider = adsPushConfigurationProvider;
             this._firebasePushNotificationSenderFactory = firebasePushNotificationSenderFactory;
             this._applePushNotificationSenderFactory = applePushNotificationSenderFactory;
             this._vapidPushNotificationSenderFactory = vapidPushNotificationSenderFactory;
+            this._hmsPushNotificationSenderFactory = hmsPushNotificationSenderFactory;
         }
 
 
@@ -118,6 +122,18 @@ namespace AdsPush
                             cancellationToken);
 
                     break;
+                case AdsPushProvider.HMS:
+                    if(settings.HMS is null)
+                    {
+                        throw new AdsPushException(
+                           $"Settings are not configured for target platform {target}. Configure VAPID to be able to proceed.",
+                            AdsPushErrorType.InvalidAuthConfiguration,
+                            null);
+                    }
+
+                    await this._hmsPushNotificationSenderFactory.GetSender(this._appName, settings.HMS)
+                        .SendAsync(pushToken, payload, cancellationToken);
+                    break;
                 default:
                     throw new NotSupportedException($"Target {target} is not supported by Framework");
             }
@@ -133,6 +149,12 @@ namespace AdsPush
         public IFirebasePushNotificationSender GetFirebaseSender()
         {
             return this._firebasePushNotificationSenderFactory.GetSender(this._appName);
+        }
+
+        /// <inheritdoc />
+        public IHMSPushNotificationSender GetHMSSender()
+        {
+            return this._hmsPushNotificationSenderFactory.GetSender(this._appName);
         }
 
         /// <inheritdoc />

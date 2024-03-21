@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPush.Abstraction", "src\AdsPush.Abstraction\AdsPush.Abstraction.csproj", "{FA1593B7-D5C9-45E4-BFED-30BFD9D83589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPush.Abstraction", "src\AdsPush.Abstraction\AdsPush.Abstraction.csproj", "{FA1593B7-D5C9-45E4-BFED-30BFD9D83589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPush.APNS", "src\AdsPush.APNS\AdsPush.APNS.csproj", "{E0C582A9-AB8E-4561-9EC7-AF6CC2DA876F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPush.APNS", "src\AdsPush.APNS\AdsPush.APNS.csproj", "{E0C582A9-AB8E-4561-9EC7-AF6CC2DA876F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPush.Firebase", "src\AdsPush.Firebase\AdsPush.Firebase.csproj", "{33EC0E05-DEC5-499C-9B58-3648A09C03A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPush.Firebase", "src\AdsPush.Firebase\AdsPush.Firebase.csproj", "{33EC0E05-DEC5-499C-9B58-3648A09C03A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPush", "src\AdsPush\AdsPush.csproj", "{95D40230-2B98-474B-8525-1C4B7BBB7337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPush", "src\AdsPush\AdsPush.csproj", "{95D40230-2B98-474B-8525-1C4B7BBB7337}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6DCD587C-FB77-4254-B98C-8E3CBC508EF1}"
 EndProject
@@ -17,11 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{27B1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EBAABD48-F59E-4CA9-8868-1A2C5B030046}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPushSample.Api", "samples\AdsPushSample.Api\AdsPushSample.Api.csproj", "{0C9EC007-C443-415C-B7DA-D0959E4B3292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPushSample.Api", "samples\AdsPushSample.Api\AdsPushSample.Api.csproj", "{0C9EC007-C443-415C-B7DA-D0959E4B3292}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPushSample.ConsoleApp", "samples\AdsPushSample.ConsoleApp\AdsPushSample.ConsoleApp.csproj", "{CE11B712-AD05-42CD-83C4-1183CCABB081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPushSample.ConsoleApp", "samples\AdsPushSample.ConsoleApp\AdsPushSample.ConsoleApp.csproj", "{CE11B712-AD05-42CD-83C4-1183CCABB081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPush.Vapid", "src\AdsPush.Vapid\AdsPush.Vapid.csproj", "{5EC17E88-BF46-4822-89AE-CC4B401128D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPush.Vapid", "src\AdsPush.Vapid\AdsPush.Vapid.csproj", "{5EC17E88-BF46-4822-89AE-CC4B401128D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdsPushSample.VapidClient", "AdsPushSample.VapidClient", "{8D84A155-DF61-4E97-A847-9CD9049E55AE}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,17 +32,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdsPushSample.VapidClient",
 		samples\AdsPushSample.VapidClient\sample-subscription.json = samples\AdsPushSample.VapidClient\sample-subscription.json
 		samples\AdsPushSample.VapidClient\service-worker.js = samples\AdsPushSample.VapidClient\service-worker.js
 		samples\AdsPushSample.VapidClient\splash-image.jpg = samples\AdsPushSample.VapidClient\splash-image.jpg
-		samples\AdsPushSample.VapidClient\splash.html = samples\AdsPushSample.VapidClient\splash.html
 		samples\AdsPushSample.VapidClient\splash.css = samples\AdsPushSample.VapidClient\splash.css
+		samples\AdsPushSample.VapidClient\splash.html = samples\AdsPushSample.VapidClient\splash.html
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPush.HMS", "src\AdsPush.HMS\AdsPush.HMS.csproj", "{EA623161-C0C3-4733-903D-00CF79EB1D28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FA1593B7-D5C9-45E4-BFED-30BFD9D83589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -73,15 +72,26 @@ Global
 		{5EC17E88-BF46-4822-89AE-CC4B401128D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC17E88-BF46-4822-89AE-CC4B401128D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC17E88-BF46-4822-89AE-CC4B401128D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA623161-C0C3-4733-903D-00CF79EB1D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA623161-C0C3-4733-903D-00CF79EB1D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA623161-C0C3-4733-903D-00CF79EB1D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA623161-C0C3-4733-903D-00CF79EB1D28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{33EC0E05-DEC5-499C-9B58-3648A09C03A7} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
-		{E0C582A9-AB8E-4561-9EC7-AF6CC2DA876F} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
 		{FA1593B7-D5C9-45E4-BFED-30BFD9D83589} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
+		{E0C582A9-AB8E-4561-9EC7-AF6CC2DA876F} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
+		{33EC0E05-DEC5-499C-9B58-3648A09C03A7} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
 		{95D40230-2B98-474B-8525-1C4B7BBB7337} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
 		{0C9EC007-C443-415C-B7DA-D0959E4B3292} = {27B12BE4-A809-42C0-A6DC-8306BB2206BF}
 		{CE11B712-AD05-42CD-83C4-1183CCABB081} = {27B12BE4-A809-42C0-A6DC-8306BB2206BF}
 		{5EC17E88-BF46-4822-89AE-CC4B401128D0} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
 		{8D84A155-DF61-4E97-A847-9CD9049E55AE} = {27B12BE4-A809-42C0-A6DC-8306BB2206BF}
+		{EA623161-C0C3-4733-903D-00CF79EB1D28} = {6DCD587C-FB77-4254-B98C-8E3CBC508EF1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4061E00B-560E-4C2C-92B1-1551EA2562AA}
 	EndGlobalSection
 EndGlobal

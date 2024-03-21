@@ -34,5 +34,10 @@ namespace AdsPush.Abstraction.Settings
         /// Vapid configuration
         /// </summary>
         public AdsPushVapidSettings Vapid { get; set; }
+
+        /// <summary>
+        /// HMS configuration
+        /// </summary>
+        public AdsPushHMSSettings HMS { get; set; }
     }
 }

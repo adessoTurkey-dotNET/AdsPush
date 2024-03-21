@@ -1,10 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 
 using System;
 using System.Collections.Generic;
 using AdsPush;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.APNS;
+using AdsPush.Abstraction.HMS;
+using AdsPush.Abstraction.HMS.Android;
 using AdsPush.Abstraction.Settings;
 using AdsPush.Abstraction.Vapid;
 using AdsPush.Vapid;
@@ -27,10 +29,20 @@ var vapidSettings = new AdsPushVapidSettings()
     //put your configurations hare.
 };
 
+var hmsSettings = new AdsPushHMSSettings()
+{
+    //put your configurations hare.
+    ApiBaseUrl = "https://push-api.cloud.huawei.com",
+    IdentityUrl = "https://oauth-login.cloud.huawei.com/oauth2",
+    ClientId = "110262941",
+    ClientSecret = "7b88e9ac7b97a8bdb1beb8a5049ab0654ec0bdb7d8d1578e5aeb93521dec70af"
+};
+
 var sender = builder
     .ConfigureVapid(vapidSettings)
     .ConfigureApns(apnsSettings)
     .ConfigureFirebase(firebaseSettings, AdsPushTarget.Android)
+    .ConfigureHMS(hmsSettings, AdsPushTarget.HarmonyOS)
     .BuildSender();
 
 
@@ -54,7 +66,8 @@ var basicPayload = new AdsPushBasicSendPayload()
 var apnDeviceToken = "15f6fdd0f34a7e0f46301a817536f0fb1b2ab05b09b3fae02beba2854a1a2a16";
 //var apnDeviceTokenVapid = "{"endpoint:"...", "keys": {"auth":"...","p256dh":"..."}}";
 await sender.BasicSendAsync(
-    AdsPushTarget.Ios,
+    //AdsPushTarget.Ios,
+    AdsPushTarget.HarmonyOS,
     apnDeviceToken,
     basicPayload);
 
@@ -116,7 +129,7 @@ var firebaseResult = await sender
     .SendToSingleAsync(new Message()
     {
         Token = "",
-        Android = new AndroidConfig()
+        Android = new FirebaseAdmin.Messaging.AndroidConfig()
         {
             Priority = Priority.High,
         },
@@ -153,3 +166,53 @@ var vapidResult = await sender
                 }
             }
         });
+
+
+
+//sample for HMS
+var hmsResult = await sender
+    .GetHMSSender()
+    .SendAsync(new HMSRequest
+    {
+        HMSPayload = new()
+        {
+            PushToken = "hms push token",
+            Notification = new()
+            {
+                Title = "",
+                Body = "",
+                Image = ""
+            },
+            Android = new()
+            {
+                CollapseKey = 1,
+                TimeToLive = new TimeSpan(25412),
+                Notification = new()
+                {
+                    Color = "red",
+                    Sound = "",
+                    ClickAction = new ClickAction
+                    {
+                        Type = 2,
+                        Url = "",
+                        Action = ""
+                    },
+                    UseDefaultLight = true,
+                    UseDefaultVibrate = true,
+                    TitleLocArgs =
+                    {
+
+                    },
+                    Buttons = new List<Button>{
+                        new Button
+                        {
+                            ActionType = 3,
+                            Data = ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "deviceToken",
+    Guid.NewGuid());

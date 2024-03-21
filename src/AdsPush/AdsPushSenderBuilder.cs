@@ -6,6 +6,7 @@ using AdsPush.APNS;
 using AdsPush.APNS.Settings;
 using AdsPush.Firebase;
 using AdsPush.Firebase.Settings;
+using AdsPush.HMS;
 using AdsPush.Vapid;
 using AdsPush.Vapid.Settings;
 
@@ -19,6 +20,8 @@ namespace AdsPush
         private readonly AdsPushAppSettings _adsPushAppSettings;
         private HttpClient _apnsHttpClient;
         private HttpClient _vapidHttpClient;
+        private HttpClient _hmsHttpClient;
+        private HttpClient _hmsAuthHttpClient;
 
         /// <summary>
         ///
@@ -75,6 +78,47 @@ namespace AdsPush
             return this;
         }
 
+
+        /// <summary>
+        /// Use to configure Huawei Messaging System for sender.
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="targets"></param>
+        /// <returns></returns>
+        public AdsPushSenderBuilder ConfigureHMS(
+            AdsPushHMSSettings settings,
+            HttpClient httpClient = null,
+            HttpClient authHttpClient = null,
+            params AdsPushTarget[] targets)
+        {
+            // Can be used as a provider for different type of target os like ios, android, huawei
+            this._adsPushAppSettings.HMS = settings;
+            foreach (var target in targets)
+            {
+                this._adsPushAppSettings.TargetMappings[target] = AdsPushProvider.HMS;
+            }
+            this._hmsHttpClient = httpClient ?? new HttpClient();
+            this._hmsAuthHttpClient = authHttpClient ?? new HttpClient();
+
+            return this;
+        }
+
+        public AdsPushSenderBuilder ConfigureHMS(
+           AdsPushHMSSettings settings,
+           params AdsPushTarget[] targets)
+        {
+            // Can be used as a provider for different type of target os like ios, android, huawei
+            this._adsPushAppSettings.HMS = settings;
+            foreach (var target in targets)
+            {
+                this._adsPushAppSettings.TargetMappings[target] = AdsPushProvider.HMS;
+            }
+            this._hmsHttpClient = new HttpClient();
+            this._hmsAuthHttpClient = new HttpClient();
+
+            return this;
+        }
+
         /// <summary>
         /// Build the configured sender.
         /// </summary>
@@ -111,12 +155,22 @@ namespace AdsPush
                 }, this._vapidHttpClient)
                 : null;
 
+            var hmsFactory = this._adsPushAppSettings.HMS != null
+               ? new HMSPushNotificationSenderFactory(new HMS.Settings.HMSSettingsSection
+               {
+                    {
+                        appName, this._adsPushAppSettings.HMS
+                    }
+               }, this._hmsHttpClient, this._hmsAuthHttpClient)
+               : null;
+
             return new AdsPushSender(
                 appName,
                 provider,
                 firebaseFactory,
                 apnsFactory,
-                vapidFactory);
+                vapidFactory,
+                hmsFactory);
         }
     }
 }

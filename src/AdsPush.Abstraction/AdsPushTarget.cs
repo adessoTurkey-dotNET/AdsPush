@@ -16,6 +16,10 @@ namespace AdsPush.Abstraction
         /// <summary>
         /// Mobile & PC Browsers, progressive web application (PWA)
         /// </summary>
-        BrowserAndPwa
+        BrowserAndPwa,
+        /// <summary>
+        /// HarmonyOS
+        /// </summary>
+        HarmonyOS
     }
 }

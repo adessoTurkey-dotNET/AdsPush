@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AdsPush.Abstraction;
 using AdsPush.APNS;
 using AdsPush.Firebase;
+using AdsPush.HMS;
 using AdsPush.Vapid;
 
 namespace AdsPush
@@ -45,5 +46,11 @@ namespace AdsPush
         /// </summary>
         /// <returns></returns>
         IVapidPushNotificationSender GetVapidSender();
+
+        /// <summary>
+        /// Use to access whole platform specific options for HMS.
+        /// </summary>
+        /// <returns></returns>
+        IHMSPushNotificationSender GetHMSSender();
     }
 }
