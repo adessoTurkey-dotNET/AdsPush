@@ -29,8 +29,8 @@ namespace AdsPush.Abstraction
         /// Error group.
         /// <see cref="AdsPushErrorType"/>
         /// </summary>
-        public AdsPushErrorType ErrorType {  get; }
-        
+        public AdsPushErrorType ErrorType { get; }
+
         /// <summary>
         /// Related service http response.
         /// <see cref="HttpResponseMessage"/> 

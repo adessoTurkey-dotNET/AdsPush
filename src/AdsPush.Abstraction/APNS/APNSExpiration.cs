@@ -38,6 +38,5 @@ namespace AdsPush.Abstraction.APNS
         /// <returns></returns>
         public static APNSExpiration FromDate(DateTimeOffset expiryDate) => new APNSExpiration(
             expiryDate.ToUnixTimeSeconds());
-
     }
 }

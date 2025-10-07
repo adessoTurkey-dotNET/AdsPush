@@ -85,30 +85,20 @@ namespace AdsPush
             var provider = new BasicAdsPushConfigurationProvider(this._adsPushAppSettings);
 
             var apnsFactory = this._adsPushAppSettings.Apns != null
-                ? new ApplePushNotificationSenderFactory(new APNSSettingsSection
-                {
-                    {
-                        appName, this._adsPushAppSettings.Apns
-                    }
-                }, this._apnsHttpClient)
+                ? new ApplePushNotificationSenderFactory(
+                    new APNSSettingsSection { { appName, this._adsPushAppSettings.Apns } }, this._apnsHttpClient)
                 : null;
 
             var firebaseFactory = this._adsPushAppSettings.Firebase != null
                 ? new FirebasePushNotificationSenderFactory(new FirebaseAppSettingsSection
                 {
-                    {
-                        appName, this._adsPushAppSettings.Firebase
-                    }
+                    { appName, this._adsPushAppSettings.Firebase }
                 })
                 : null;
 
             var vapidFactory = this._adsPushAppSettings.Vapid != null
-                ? new VapidPushNotificationSenderFactory(new VapidSettingsSection()
-                {
-                    {
-                        appName, this._adsPushAppSettings.Vapid
-                    }
-                }, this._vapidHttpClient)
+                ? new VapidPushNotificationSenderFactory(
+                    new VapidSettingsSection() { { appName, this._adsPushAppSettings.Vapid } }, this._vapidHttpClient)
                 : null;
 
             return new AdsPushSender(

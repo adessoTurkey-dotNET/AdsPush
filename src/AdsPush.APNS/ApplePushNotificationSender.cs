@@ -8,12 +8,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.APNS;
 using AdsPush.Abstraction.Settings;
-using AdsPush.APNS.Helpers;
 using AdsPush.APNS.Extensions;
+using AdsPush.APNS.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace AdsPush.APNS
 {
@@ -22,8 +22,15 @@ namespace AdsPush.APNS
     /// </summary>
     internal class ApplePushNotificationSender : IApplePushNotificationSender
     {
-        private static readonly ConcurrentDictionary<string, Tuple<string, DateTime>> Tokens = new ConcurrentDictionary<string, Tuple<string, DateTime>>();
-        private static readonly Dictionary<APNSEnvironmentType, string> Servers = new Dictionary<APNSEnvironmentType, string> { { APNSEnvironmentType.Development, "https://api.development.push.apple.com:443" }, { APNSEnvironmentType.Production, "https://api.push.apple.com:443" } };
+        private static readonly ConcurrentDictionary<string, Tuple<string, DateTime>> Tokens =
+            new ConcurrentDictionary<string, Tuple<string, DateTime>>();
+
+        private static readonly Dictionary<APNSEnvironmentType, string> Servers =
+            new Dictionary<APNSEnvironmentType, string>
+            {
+                { APNSEnvironmentType.Development, "https://api.development.push.apple.com:443" },
+                { APNSEnvironmentType.Production, "https://api.push.apple.com:443" }
+            };
 
         private const string ApnIdHeader = "apns-id";
         private const int TokenExpiresMinutes = 50;
@@ -59,10 +66,7 @@ namespace AdsPush.APNS
             bool isBackground = false,
             CancellationToken cancellationToken = default)
         {
-            var jsonObject = new JObject()
-            {
-                ["aps"] = JObject.FromObject(apnsRequest.ApnsPayload)
-            };
+            var jsonObject = new JObject() { ["aps"] = JObject.FromObject(apnsRequest.ApnsPayload) };
 
             foreach (var item in apnsRequest.AdditionalParameters)
             {
@@ -123,7 +127,8 @@ namespace AdsPush.APNS
             message.Headers.TryAddWithoutValidation(":method", "POST");
             message.Headers.TryAddWithoutValidation(":path", path);
             message.Headers.Add("apns-topic", this._settings.AppBundleIdentifier);
-            message.Headers.Add("apns-expiration", (apnsExpiration ?? APNSExpiration.SingeTry()).ApnsExpirationValue.ToString());
+            message.Headers.Add("apns-expiration",
+                (apnsExpiration ?? APNSExpiration.SingeTry()).ApnsExpirationValue.ToString());
             message.Headers.Add("apns-priority", apnsPriority.ToString());
             message.Headers.Add("apns-push-type", isBackground ? "background" : "alert"); // required for iOS 13+
             message.Headers.Add(ApnIdHeader, apnsId.ToString());
@@ -160,7 +165,8 @@ namespace AdsPush.APNS
 
         private string GetJwtToken()
         {
-            var (token, date) = Tokens.GetOrAdd(this._settings.AppBundleIdentifier, _ => new Tuple<string, DateTime>(this.CreateJwtToken(), DateTime.UtcNow));
+            var (token, date) = Tokens.GetOrAdd(this._settings.AppBundleIdentifier,
+                _ => new Tuple<string, DateTime>(this.CreateJwtToken(), DateTime.UtcNow));
             if (date >= DateTime.UtcNow.AddMinutes(-TokenExpiresMinutes))
             {
                 return token;
@@ -206,7 +212,7 @@ namespace AdsPush.APNS
                 lines.RemoveAt(0);
             }
 
-            if (0 != lines.Count && lines[lines.Count -1].StartsWith("-----END PRIVATE KEY-----"))
+            if (0 != lines.Count && lines[lines.Count - 1].StartsWith("-----END PRIVATE KEY-----"))
             {
                 lines.RemoveAt(lines.Count - 1);
             }

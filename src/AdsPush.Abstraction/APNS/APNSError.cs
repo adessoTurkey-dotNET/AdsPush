@@ -11,13 +11,13 @@ namespace AdsPush.Abstraction.APNS
         /// APNS Error reason.
         /// <see cref="APNSErrorReasonCode"/>
         /// </summary>
-        public APNSErrorReasonCode Reason {get; set;}
-        
+        public APNSErrorReasonCode Reason { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public long? Timestamp {get; set; }
-        
+        public long? Timestamp { get; set; }
+
         /// <summary>
         /// APNS Response.
         /// <see cref="HttpResponseMessage"/>

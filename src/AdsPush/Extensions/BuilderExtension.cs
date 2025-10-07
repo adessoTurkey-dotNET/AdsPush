@@ -1,11 +1,11 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.Settings;
 using AdsPush.APNS.Extensions;
 using AdsPush.Firebase.Extensions;
 using AdsPush.Vapid.Extensions;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdsPush.Extensions
 {

@@ -40,7 +40,8 @@ namespace AdsPush.Firebase
             string appName,
             AdsPushFirebaseSettings settings)
         {
-            return this._firebasePushNotificationSenders.GetOrAdd(appName, new FirebasePushNotificationSender(settings));
+            return this._firebasePushNotificationSenders.GetOrAdd(appName,
+                new FirebasePushNotificationSender(settings));
         }
     }
 }

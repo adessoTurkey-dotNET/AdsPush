@@ -50,12 +50,7 @@ namespace AdsPush.Vapid.Util
             var input = AddPaddingToInput(payload);
             var encryptedMessage = EncryptAes(nonce, cek, input);
 
-            return new EncryptionResult
-            {
-                Salt = salt,
-                Payload = encryptedMessage,
-                PublicKey = serverPublicKey
-            };
+            return new EncryptionResult { Salt = salt, Payload = encryptedMessage, PublicKey = serverPublicKey };
         }
 
         private static byte[] GenerateSalt(
@@ -100,10 +95,7 @@ namespace AdsPush.Vapid.Util
             int length)
         {
             var hmac = new HmacSha256(key);
-            var infoAndOne = info.Concat(new byte[]
-            {
-                0x01
-            }).ToArray();
+            var infoAndOne = info.Concat(new byte[] { 0x01 }).ToArray();
             var result = hmac.ComputeHash(infoAndOne);
 
             if (result.Length > length)

@@ -13,7 +13,7 @@ namespace AdsPush
         {
             _adsPushAppSettings = adsPushAppSettings;
         }
-    
+
         public Task<AdsPushAppSettings> GetSettingsAsync(
             string appName,
             CancellationToken cancellationToken = default)

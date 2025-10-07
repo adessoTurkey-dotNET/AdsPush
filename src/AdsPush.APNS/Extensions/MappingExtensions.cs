@@ -43,58 +43,58 @@ namespace AdsPush.APNS.Extensions
             this APNSError error)
         {
             switch (error.Reason)
-                {
-                    case APNSErrorReasonCode.BadDeviceToken:
-                    case APNSErrorReasonCode.Unregistered:
-                        return new AdsPushException(
-                            error.Reason.ToString(),
-                            AdsPushErrorType.InvalidToken,
-                            error.HttpResponse);
+            {
+                case APNSErrorReasonCode.BadDeviceToken:
+                case APNSErrorReasonCode.Unregistered:
+                    return new AdsPushException(
+                        error.Reason.ToString(),
+                        AdsPushErrorType.InvalidToken,
+                        error.HttpResponse);
 
-                    case APNSErrorReasonCode.BadCollapseId:
-                    case APNSErrorReasonCode.BadExpirationDate:
-                    case APNSErrorReasonCode.BadMessageId:
-                    case APNSErrorReasonCode.BadPriority:
-                    case APNSErrorReasonCode.BadTopic:
-                    case APNSErrorReasonCode.DeviceTokenNotForTopic:
-                    case APNSErrorReasonCode.MissingDeviceToken:
-                    case APNSErrorReasonCode.MissingTopic:
-                    case APNSErrorReasonCode.PayloadEmpty:
-                    case APNSErrorReasonCode.TopicDisallowed:
-                        return new AdsPushException(
-                            error.Reason.ToString(),
-                            AdsPushErrorType.InvalidArgument,
-                            error.HttpResponse);
+                case APNSErrorReasonCode.BadCollapseId:
+                case APNSErrorReasonCode.BadExpirationDate:
+                case APNSErrorReasonCode.BadMessageId:
+                case APNSErrorReasonCode.BadPriority:
+                case APNSErrorReasonCode.BadTopic:
+                case APNSErrorReasonCode.DeviceTokenNotForTopic:
+                case APNSErrorReasonCode.MissingDeviceToken:
+                case APNSErrorReasonCode.MissingTopic:
+                case APNSErrorReasonCode.PayloadEmpty:
+                case APNSErrorReasonCode.TopicDisallowed:
+                    return new AdsPushException(
+                        error.Reason.ToString(),
+                        AdsPushErrorType.InvalidArgument,
+                        error.HttpResponse);
 
-                    case APNSErrorReasonCode.BadCertificate:
-                    case APNSErrorReasonCode.BadCertificateEnvironment:
-                    case APNSErrorReasonCode.Forbidden:
-                    case APNSErrorReasonCode.MethodNotAllowed:
-                        return new AdsPushException(
-                            error.Reason.ToString(),
-                            AdsPushErrorType.InvalidAuthConfiguration,
-                            error.HttpResponse);
+                case APNSErrorReasonCode.BadCertificate:
+                case APNSErrorReasonCode.BadCertificateEnvironment:
+                case APNSErrorReasonCode.Forbidden:
+                case APNSErrorReasonCode.MethodNotAllowed:
+                    return new AdsPushException(
+                        error.Reason.ToString(),
+                        AdsPushErrorType.InvalidAuthConfiguration,
+                        error.HttpResponse);
 
-                    case APNSErrorReasonCode.InternalServerError:
-                    case APNSErrorReasonCode.ServiceUnavailable:
-                    case APNSErrorReasonCode.Shutdown:
-                    case APNSErrorReasonCode.ExpiredProviderToken:
-                    case APNSErrorReasonCode.InvalidProviderToken:
-                    case APNSErrorReasonCode.MissingProviderToken:
-                    case APNSErrorReasonCode.BadPath:
-                    case APNSErrorReasonCode.PayloadTooLarge:
-                    case APNSErrorReasonCode.TooManyProviderTokenUpdates:
-                    case APNSErrorReasonCode.TooManyRequests:
-                    case APNSErrorReasonCode.DuplicateHeaders:
-                    case APNSErrorReasonCode.IdleTimeout:
-                        return new AdsPushException(
-                            error.Reason.ToString(),
-                            AdsPushErrorType.ServiceUnavailable,
-                            error.HttpResponse);
+                case APNSErrorReasonCode.InternalServerError:
+                case APNSErrorReasonCode.ServiceUnavailable:
+                case APNSErrorReasonCode.Shutdown:
+                case APNSErrorReasonCode.ExpiredProviderToken:
+                case APNSErrorReasonCode.InvalidProviderToken:
+                case APNSErrorReasonCode.MissingProviderToken:
+                case APNSErrorReasonCode.BadPath:
+                case APNSErrorReasonCode.PayloadTooLarge:
+                case APNSErrorReasonCode.TooManyProviderTokenUpdates:
+                case APNSErrorReasonCode.TooManyRequests:
+                case APNSErrorReasonCode.DuplicateHeaders:
+                case APNSErrorReasonCode.IdleTimeout:
+                    return new AdsPushException(
+                        error.Reason.ToString(),
+                        AdsPushErrorType.ServiceUnavailable,
+                        error.HttpResponse);
 
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

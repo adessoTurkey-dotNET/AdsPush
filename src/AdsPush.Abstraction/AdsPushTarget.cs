@@ -9,10 +9,12 @@ namespace AdsPush.Abstraction
         /// Apple IOS/iPadOS
         /// </summary>
         Ios,
+
         /// <summary>
         /// Android
         /// </summary>
         Android,
+
         /// <summary>
         /// Mobile & PC Browsers, progressive web application (PWA)
         /// </summary>

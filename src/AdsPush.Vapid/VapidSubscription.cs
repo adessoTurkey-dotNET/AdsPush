@@ -71,11 +71,7 @@ namespace AdsPush.Vapid
             return new JObject()
             {
                 ["endpoint"] = this.Endpoint,
-                ["keys"] = new JObject()
-                {
-                    ["auth"] = this.Auth,
-                    ["p256dh"] = this.P256dh
-                }
+                ["keys"] = new JObject() { ["auth"] = this.Auth, ["p256dh"] = this.P256dh }
             }.ToString();
         }
 

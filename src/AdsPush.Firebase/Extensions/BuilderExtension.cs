@@ -1,8 +1,8 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using AdsPush.Abstraction.Settings;
 using AdsPush.Firebase.Settings;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace AdsPush.Firebase.Extensions
 {

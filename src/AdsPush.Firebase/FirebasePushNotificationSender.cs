@@ -1,22 +1,28 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FirebaseAdmin;
-using FirebaseAdmin.Messaging;
-using Google.Apis.Auth.OAuth2;
-using Newtonsoft.Json;
 using AdsPush.Abstraction;
 using AdsPush.Abstraction.Firebase;
 using AdsPush.Abstraction.Settings;
 using AdsPush.Firebase.Extensions;
+using FirebaseAdmin;
+using FirebaseAdmin.Messaging;
+using Google.Apis.Auth.OAuth2;
+using Newtonsoft.Json;
 
 namespace AdsPush.Firebase
 {
     internal class FirebasePushNotificationSender : IFirebasePushNotificationSender
     {
         private readonly FirebaseMessaging _firebaseMessaging;
+
+        internal FirebasePushNotificationSender(FirebaseMessaging firebaseMessaging)
+        {
+            this._firebaseMessaging = firebaseMessaging ?? throw new ArgumentNullException(nameof(firebaseMessaging));
+        }
 
         public FirebasePushNotificationSender(AdsPushFirebaseSettings settings)
         {
@@ -35,7 +41,8 @@ namespace AdsPush.Firebase
             };
 
             var serviceAccountJson = JsonConvert.SerializeObject(serviceAccountModel);
-            var firebaseApp = FirebaseApp.GetInstance(settings.ProjectId) ?? FirebaseApp.Create(new AppOptions() { Credential = GoogleCredential.FromJson(serviceAccountJson) }, settings.ProjectId);
+            var firebaseApp = FirebaseApp.GetInstance(settings.ProjectId) ?? FirebaseApp.Create(
+                new AppOptions() { Credential = GoogleCredential.FromJson(serviceAccountJson) }, settings.ProjectId);
 
             this._firebaseMessaging = FirebaseMessaging.GetMessaging(firebaseApp);
         }
@@ -52,10 +59,7 @@ namespace AdsPush.Firebase
 
         public FirebasePushNotificationSender(Stream stream)
         {
-            var firebaseApp = FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.FromStream(stream)
-            });
+            var firebaseApp = FirebaseApp.Create(new AppOptions() { Credential = GoogleCredential.FromStream(stream) });
 
             this._firebaseMessaging = FirebaseMessaging.GetMessaging(firebaseApp);
         }
@@ -82,7 +86,8 @@ namespace AdsPush.Firebase
             CancellationToken cancellationToken = default)
         {
             var result = await this._firebaseMessaging.SendMulticastAsync(notification, cancellationToken);
-            return new FirebaseNotificationBatchResult(result.Responses.Select(FirebaseNotificationResult.CreateUsingFirebaseSendResponse).ToList());
+            return new FirebaseNotificationBatchResult(result.Responses
+                .Select(FirebaseNotificationResult.CreateUsingFirebaseSendResponse).ToList());
         }
 
         /// <inheritdoc />
@@ -91,7 +96,8 @@ namespace AdsPush.Firebase
             CancellationToken cancellationToken = default)
         {
             var result = await this._firebaseMessaging.SendAllAsync(notifications, cancellationToken);
-            return new FirebaseNotificationBatchResult(result.Responses.Select(FirebaseNotificationResult.CreateUsingFirebaseSendResponse).ToList());
+            return new FirebaseNotificationBatchResult(result.Responses
+                .Select(FirebaseNotificationResult.CreateUsingFirebaseSendResponse).ToList());
         }
 
         public async Task SendAsync(

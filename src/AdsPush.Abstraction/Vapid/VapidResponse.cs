@@ -1,5 +1,3 @@
-using AdsPush.Abstraction.APNS;
-
 namespace AdsPush.Abstraction.Vapid
 {
     /// <summary>

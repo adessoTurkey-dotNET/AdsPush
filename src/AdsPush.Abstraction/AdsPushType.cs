@@ -1,5 +1,3 @@
-using System;
-
 namespace AdsPush.Abstraction
 {
     /// <summary>
@@ -11,6 +9,7 @@ namespace AdsPush.Abstraction
         /// Shown notification.
         /// </summary>
         Alert,
+
         /// <summary>
         /// Silent notification.
         /// </summary>

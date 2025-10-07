@@ -43,12 +43,9 @@ namespace AdsPush.Vapid.Util
             var b = results[1].ToByteArrayUnsigned();
 
             // a,b are required to be exactly the same length of bytes
-            if (a.Length != b.Length)
-            {
-                var largestLength = Math.Max(a.Length, b.Length);
-                a = ByteArrayPadLeft(a, largestLength);
-                b = ByteArrayPadLeft(b, largestLength);
-            }
+            var largestLength = Math.Max(a.Length, b.Length);
+            a = ByteArrayPadLeft(a, largestLength);
+            b = ByteArrayPadLeft(b, largestLength);
 
             var signature = UrlBase64.Encode(a.Concat(b).ToArray());
             return $"{securedInput}.{signature}";

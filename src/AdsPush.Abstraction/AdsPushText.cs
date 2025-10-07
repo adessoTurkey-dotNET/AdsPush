@@ -19,7 +19,7 @@ namespace AdsPush.Abstraction
                 string.Empty,
                 null);
         }
-        
+
         /// <summary>
         /// Sets localized text model supported by APNS and FXM 
         /// </summary>
@@ -30,11 +30,11 @@ namespace AdsPush.Abstraction
             string localizationKey,
             IEnumerable<string> localizationArgs)
         {
-            return new AdsPushText(string.Empty, 
+            return new AdsPushText(string.Empty,
                 localizationKey,
                 localizationArgs ?? new List<string>());
         }
-        
+
         private AdsPushText(
             string text,
             string localizationKey,
@@ -44,17 +44,17 @@ namespace AdsPush.Abstraction
             this.LocalizationKey = localizationKey;
             this.LocalizationArgs = localizationArgs;
         }
-        
+
         /// <summary>
         /// Flat string.
         /// </summary>
         public string Text { get; }
-        
+
         /// <summary>
         /// Localize string. 
         /// </summary>
         public string LocalizationKey { get; }
-        
+
         /// <summary>
         /// Localize string parameters.
         /// </summary>

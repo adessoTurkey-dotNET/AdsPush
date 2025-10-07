@@ -53,27 +53,11 @@ namespace AdsPush.Vapid
                 ValidateExpiration(expiration);
             }
 
-            var header = new Dictionary<string, object>
-            {
-                {
-                    "typ", "JWT"
-                },
-                {
-                    "alg", "ES256"
-                }
-            };
+            var header = new Dictionary<string, object> { { "typ", "JWT" }, { "alg", "ES256" } };
 
             var jwtPayload = new Dictionary<string, object>
             {
-                {
-                    "aud", audience
-                },
-                {
-                    "exp", expiration
-                },
-                {
-                    "sub", subject
-                }
+                { "aud", audience }, { "exp", expiration }, { "sub", subject }
             };
 
             var signingKey = ECKeyHelper.GetPrivateKey(decodedPrivateKey);
@@ -82,12 +66,7 @@ namespace AdsPush.Vapid
 
             var results = new Dictionary<string, string>
             {
-                {
-                    "Authorization", "WebPush " + token
-                },
-                {
-                    "Crypto-Key", "p256ecdsa=" + publicKey
-                }
+                { "Authorization", "WebPush " + token }, { "Crypto-Key", "p256ecdsa=" + publicKey }
             };
 
             return results;
@@ -96,7 +75,7 @@ namespace AdsPush.Vapid
         private static void ValidateAudience(
             string audience)
         {
-            if (string.IsNullOrEmpty(audience))
+            if (audience is null)
             {
                 throw new ArgumentException(@"No audience could be generated for VAPID.");
             }
@@ -116,7 +95,7 @@ namespace AdsPush.Vapid
         private static void ValidateSubject(
             string subject)
         {
-            if (string.IsNullOrEmpty(subject))
+            if (subject is null)
             {
                 throw new ArgumentException(@"A subject is required");
             }

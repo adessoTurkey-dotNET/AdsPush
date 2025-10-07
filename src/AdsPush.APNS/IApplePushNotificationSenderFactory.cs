@@ -1,5 +1,4 @@
 using AdsPush.Abstraction.Settings;
-using AdsPush.APNS.Settings;
 
 namespace AdsPush.APNS
 {

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdsPush.Abstraction;
+using AdsPush.Abstraction.APNS;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using FirebaseAdmin.Messaging;
-using AdsPush.Abstraction;
-using AdsPush.Abstraction.APNS;
 
 namespace AdsPush.Firebase.Extensions
 {
@@ -23,8 +23,7 @@ namespace AdsPush.Firebase.Extensions
 
             var message = new Message()
             {
-                Token = deviceToken,
-                Data = payload.Parameters.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                Token = deviceToken, Data = payload.Parameters.ToDictionary(x => x.Key, x => x.Value.ToString()),
             };
 
             switch (target)
@@ -53,14 +52,13 @@ namespace AdsPush.Firebase.Extensions
                     };
                     var headers = new Dictionary<string, string>()
                     {
-                        {
-                            "apns-push-type", payload.PushType.ToString()
-                        }
+                        { "apns-push-type", payload.PushType.ToString() }
                     };
 
                     if (payload.Ttl.HasValue)
                     {
-                        headers.Add("apns-expiration", APNSExpiration.FromTimeSpan(payload.Ttl.Value).ApnsExpirationValue.ToString());
+                        headers.Add("apns-expiration",
+                            APNSExpiration.FromTimeSpan(payload.Ttl.Value).ApnsExpirationValue.ToString());
                     }
 
                     message.Apns.Headers = headers;

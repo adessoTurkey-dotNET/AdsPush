@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace AdsPush.Abstraction.APNS
+﻿namespace AdsPush.Abstraction.APNS
 {
     /// <summary>
     /// Generic service response.
@@ -10,7 +8,7 @@ namespace AdsPush.Abstraction.APNS
         /// <summary>
         /// The service response success or not.
         /// </summary>
-        public bool IsSuccess { get; set;  }
+        public bool IsSuccess { get; set; }
 
         /// <summary>
         /// Represents error if occurrences. <seealso cref="APNSError"/>

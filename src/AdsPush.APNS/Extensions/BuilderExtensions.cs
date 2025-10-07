@@ -1,15 +1,13 @@
 using System;
 using System.Net.Http;
+using AdsPush.APNS.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using AdsPush.Abstraction.Settings;
-using AdsPush.APNS.Settings;
 
 namespace AdsPush.APNS.Extensions
 {
     public static class BuilderExtensions
     {
-  
         /// <summary>
         /// Configures <see cref="IApplePushNotificationSenderFactory"/> to be able to creates <see cref="IApplePushNotificationSender"/> instance.
         /// </summary>

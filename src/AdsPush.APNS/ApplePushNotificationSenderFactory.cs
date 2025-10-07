@@ -6,7 +6,7 @@ using AdsPush.APNS.Settings;
 
 namespace AdsPush.APNS
 {
-    public class ApplePushNotificationSenderFactory:  IApplePushNotificationSenderFactory
+    public class ApplePushNotificationSenderFactory : IApplePushNotificationSenderFactory
     {
         public ApplePushNotificationSenderFactory(
             APNSSettingsSection apnsSettingsSection,
@@ -50,7 +50,8 @@ namespace AdsPush.APNS
             string appName,
             AdsPushAPNSSettings apnsSettings)
         {
-            return this._apnsPushNotificationSenders.GetOrAdd(appName, new ApplePushNotificationSender(apnsSettings, this._httpClient));
+            return this._apnsPushNotificationSenders.GetOrAdd(appName,
+                new ApplePushNotificationSender(apnsSettings, this._httpClient));
         }
     }
 }

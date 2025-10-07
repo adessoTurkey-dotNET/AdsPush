@@ -1,5 +1,4 @@
 using AdsPush.Abstraction.Settings;
-using AdsPush.Firebase.Settings;
 
 namespace AdsPush.Firebase
 {

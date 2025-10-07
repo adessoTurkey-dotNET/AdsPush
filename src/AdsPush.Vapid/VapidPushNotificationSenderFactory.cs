@@ -50,7 +50,8 @@ namespace AdsPush.Vapid
             string appName,
             AdsPushVapidSettings vapidSettings)
         {
-            return this._vapidPushNotificationSenders.GetOrAdd(appName, new VapidPushNotificationSender(vapidSettings, this._httpClient));
+            return this._vapidPushNotificationSenders.GetOrAdd(appName,
+                new VapidPushNotificationSender(vapidSettings, this._httpClient));
         }
     }
 }

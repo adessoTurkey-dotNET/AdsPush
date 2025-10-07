@@ -1,4 +1,3 @@
-
 using FirebaseAdmin.Messaging;
 
 namespace AdsPush.Abstraction.Firebase
@@ -48,12 +47,12 @@ namespace AdsPush.Abstraction.Firebase
         /// The request is successful. 
         /// </summary>
         public bool IsSuccess { get; }
-        
+
         /// <summary>
         /// Unique message is.
         /// </summary>
         public string MessageId { get; }
-        
+
         /// <summary>
         /// Firebase exception.
         /// <see cref="FirebaseMessagingException"/>
